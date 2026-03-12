@@ -1,0 +1,161 @@
+body {
+    margin: 0;
+    font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+    background-color: #fefaf0;
+}
+
+/* ----- Header ----- */
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background-color: #ffbd595e;
+}
+header > img {
+    width: 130px;
+    height: auto;
+    margin-right: 20px;
+}
+header > span {
+    font-size: 40px;
+    font-weight: bold;
+    color: #343333d7;
+}
+
+/* ----- welcome-section ----- */
+.welcome-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 100px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+/* ----- LEFT SIDE  ----- */
+.Left-part {
+    display: flex;
+    flex-direction: column;
+    margin-left: -30px;
+}
+
+.Left-part > h1 {
+    font-size: 45px;
+    color: #343333d7;
+    margin: 15px 0 15px 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+/* Line */
+.divider-light {
+    width: 520px;
+    height: 5px;
+    background-color: rgba(97, 95, 95, 0.25);
+    margin: 20px auto 20px auto;
+    border: 0;
+    border-radius: 2px;
+}
+
+.Left-part > h2 {
+    font-size: 35px;
+    color: #343333d7;
+    font-weight: 400;
+    margin: 10px 0 40px 0;
+    text-align: center;
+    font-style: italic;
+}
+
+/*  Browse books and View Syllabus */
+.LeftSide-buttons {
+    display: flex;
+    gap: 35px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 0;
+}
+
+.LeftSide-buttons > a {
+    text-decoration: none;
+}
+
+.LeftSide-buttons > a > button {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border-radius: 30px;
+    padding: 15px 45px;
+    cursor: pointer;
+    font-size: 1.4rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: white;
+    transition: background-color 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.LeftSide-buttons > a > button > img {
+    width: 50px;
+    height: auto;
+}
+
+/* ----- RIGHT SIDE ----- */
+.Right-part {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.Right-part > a {
+    text-decoration: none;
+    margin: 8px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.Right-part > a > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 15px 45px;
+    border-radius: 40px;
+    cursor: pointer;
+    gap: 15px;
+    font-size: 1.4rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: white;
+    width: 320px;
+    height: 80px;
+    max-width: 100%;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.02);
+    transition: background-color 0.2s;
+    font-weight: 500;
+    color: #2c2c2c;
+}
+
+.Right-part .fa {
+    font-size: 26px;
+    margin-right: 5px;
+    color: #a74944d0;
+}
+
+button:hover {
+    background-color: #ff5961be !important;
+    border-color: transparent;
+    color: white;
+}
+button:hover .fa {
+    color: white;
+}
+
+.LeftSide-buttons button:hover img {
+    filter: brightness(0) invert(1);
+}
+
+.LeftSide-buttons button:hover img {
+    filter: brightness(0) invert(1);
+}
