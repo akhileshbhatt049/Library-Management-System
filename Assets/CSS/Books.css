@@ -1,0 +1,50 @@
+/* Search Bar */
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8c46315;
+}
+input {
+  display: inline;
+  width: 30%;
+  padding: 10px;
+  margin: 10px 15px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 15px;
+}
+.fa-search {
+  font-size: 25px;
+  cursor: pointer;
+}
+hr {
+  border-color: #c9817dd0;
+}
+
+/* Body Part */
+.books {
+  display: grid;
+  grid-template-columns: repeat(4, 300px);
+  grid-gap: 50px;
+  justify-content: center;
+  text-align: center;
+  margin-top: 30px;
+}
+.books > a {
+  text-decoration: none;
+  font-weight: 500;
+}
+.books-name {
+  color: white;
+  font-size: 20px;
+  background: linear-gradient(#22eca9, #74b7ee);
+  border-radius: 30px;
+  margin-top: 10px;
+  transition: 0.7s;
+  padding: 5px;
+}
+.books-name:hover,
+.books > img:hover {
+  background: linear-gradient(#5cdcf0, #2db4dd);
+}

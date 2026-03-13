@@ -3,117 +3,9 @@
     <head>
         <title>Available Books</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style> 
-            body {
-                margin: 0;
-                font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
-                background-color: #fefaf0;
-            }
-
-            /* Navigation Part */
-            header {
-                display: flex;
-                justify-content: space-between;
-                flex-wrap: wrap;
-                padding: 0px 15px;
-                background-color: #ffbd595e;
-                position: sticky;
-                top: 0;
-                z-index: 10;
-                margin-bottom: 5px;
-            }
-            .Logo-Name {
-                display: flex;
-                align-items: center;
-                font-size: 24px;
-                color: #343333d7;
-                flex-wrap: wrap;
-            }
-
-            .Logo-Name > img {
-                height: 70px;
-                width: 70px;
-                margin-right: 10px;
-            }
-            .Logo-Name > span {
-                font-size: 25px;
-                font-weight: bold;
-                color: #a74944d0;
-            }
-
-            nav {
-                display: flex;
-                align-items: center;
-                gap: 40px;
-                margin-right: 10px;
-                flex-wrap: wrap;
-            }
-
-            .nav-link {
-                font-size: 22px;
-                text-decoration: none;
-                color:#343433d7;
-                transition: 0.5s ease;
-            }
-
-            .nav-link:hover, .nav-link.active {
-                color: red;
-                background-color: rgb(236, 172, 109);
-                border-radius: 20px;
-                padding: 5px;
-            }
-            #Size {
-                font-size: 20px;
-            }
-            
-
-        /* Search Bar */
-        form {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: #f8c46315;
-            }
-            input {
-                display: inline;
-                width: 30%;
-                padding: 10px;
-                margin: 10px 15px;
-                border: 2px solid #ccc;
-                border-radius: 10px;
-                font-size: 15px;
-            }
-            .fa-search {
-                font-size: 25px;
-                cursor: pointer;
-            }
-
-        hr{
-            border-color: #c9817dd0;
-        }
-
-        /* Body Part */
-        .books {
-            display: grid;
-            grid-template-columns: repeat(4,300px);
-            grid-gap: 50px;
-            justify-content: center;
-            text-align: center;
-            margin-top: 30px;
-        }
-        .books-name {
-            color: white;
-            font-size: 20px;
-            background: linear-gradient(#22eca9, #74b7ee);
-            border-radius: 30px;
-            margin-top: 10px;
-            transition: 0.7s;
-        }
-        .books-name:hover , .books >img:hover {
-            background: linear-gradient(#f0cd5c, #2ddd45);
-        }
-
-        </style>
+        <link rel="stylesheet" type="text/css" href="Assets/CSS/Navigation Bar.css">
+        <link rel="stylesheet" type="text/css" href="Assets/CSS/Books.css">
+        
     </head>
     <body>
         <header class="header">
@@ -140,5 +32,36 @@
         <hr>
 
         <!-- Books Part Remaining -->
+        <div class="books">
+            <a href="#">
+                <img src="Assets/Images/Book Stack.png" alt="Book 1" width="150px" height="150px">
+                <div class="books-name">Book 1</div>
+            </a><a href="#">
+                <img src="Assets/Images/Book Stack.png" alt="Book 1" width="150px" height="150px">
+                <div class="books-name">Book 2</div>
+            </a><a href="#">
+                <img src="Assets/Images/Book Stack.png" alt="Book 1" width="150px" height="150px">
+                <div class="books-name">Book 3</div>
+            </a><a href="#">
+                <img src="Assets/Images/Book Stack.png" alt="Book 1" width="150px" height="150px">
+                <div class="books-name">Book 4</div>
+            </a><a href="#">
+                <img src="Assets/Images/Book Stack.png" alt="Book 1" width="150px" height="150px">
+                <div class="books-name">Book 5</div>
+            </a><a href="#">
+                <img src="Assets/Images/Book Stack.png" alt="Book 1" width="150px" height="150px">
+                <div class="books-name">Book 6</div>
+            </a><a href="#">
+                <img src="Assets/Images/Book Stack.png" alt="Book 1" width="150px" height="150px">
+                <div class="books-name">Book 7</div>
+            </a><a href="#">
+                <img src="Assets/Images/Book Stack.png" alt="Book 1" width="150px" height="150px">
+                <div class="books-name">Book 8</div>
+            </a>
+
+        </div>
+
     </body>
 </html>
+
+
