@@ -1,0 +1,253 @@
+.books-table {
+  display: flex;
+  justify-self: center;
+  width: 100%;
+  max-width: 900px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 3px 9px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(242, 235, 178, 0.179);
+}
+
+th {
+  background-color: #ffbd595e;
+  color: #343333d7;
+  font-size: 20px;
+  padding: 15px;
+  font-weight: bold;
+}
+
+td {
+  padding: 15px;
+  text-align: center;
+  font-size: 18px;
+  border-bottom: 1.8px solid #e0e0e0;
+}
+
+.borrow-btn {
+  background-color: #a74944d0;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: inline-flex;
+  gap: 8px;
+}
+
+.borrow-btn:hover {
+  background-color: #ff5961be;
+  transform: scale(1.05);
+}
+
+.book-title {
+  font-weight: 500;
+  color: #343333d7;
+}
+
+/* Modal/Popup Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background-color: #fefaf0;
+  margin: 30px auto;
+  padding: 30px;
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 550px;
+  position: relative;
+  animation: slideDown 0.4s ease;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-70px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 3px solid #ffbd595e;
+  padding-bottom: 15px;
+  position: sticky;
+  top: 0;
+  background-color: #fefaf0;
+  z-index: 5;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #343333d7;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-header h2 i {
+  color: #a74944d0;
+}
+
+.close-btn {
+  font-size: 40px;
+  cursor: pointer;
+  color: #a74944d0;
+  transition: 0.3s;
+  line-height: 0.8;
+  font-weight: bold;
+}
+
+.close-btn:hover {
+  color: #ff5961be;
+  transform: scale(1.1);
+}
+
+/* Form Styles */
+.borrow-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 18px;
+  color: #343333d7;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-group label i {
+  color: #a74944d0;
+  width: 22px;
+  font-size: 18px;
+}
+
+.form-group input,
+.form-group select {
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: 0.3s;
+  background-color: white;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #ffbd59;
+  box-shadow: 0 0 0 3px rgba(255, 189, 89, 0.2);
+}
+
+.form-group input:invalid:not(:placeholder-shown) {
+  border-color: #ff5961;
+}
+
+.form-group input:valid:not(:placeholder-shown) {
+  border-color: #22eca9;
+}
+
+.form-group input[readonly] {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #22eca9, #74b7ee);
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 2px solid transparent;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, #f0cd5c, #2ddd45);
+  transform: scale(1.02);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.submit-btn i {
+  font-size: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* Success Message */
+.success-message {
+  background-color: #22eca933;
+  border: 2px solid #22eca9;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #2c5a4a;
+  font-weight: 500;
+}
+
+.success-message i {
+  font-size: 24px;
+  color: #22eca9;
+}
