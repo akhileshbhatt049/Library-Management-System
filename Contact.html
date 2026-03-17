@@ -4,41 +4,7 @@
         <title>Contact</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="Assets/CSS/Navigation Bar.css">
-        <!-- <link rel="stylesheet" type="text/css" href="Assets/CSS/Borrow Books.css"> -->
-        <style>
-            /* --- Written Text --- */
-            .Page-name {
-                position: relative;
-                top: 10px;
-                left: 50px;
-                font-size: 40px;
-            }
-            .divider-light {
-                width: 170px;
-                height: 5px;
-                background-color: rgba(97, 95, 95, 0.25);
-                margin: auto 10px 20px 60px;
-                border: 0;
-                border-radius: 2px;
-            }
-            #Written-text {
-                margin: auto 10px 20px 60px;
-                font-size: 20px;
-                color: #333;
-            }
-
-                /* --- Message Area --- */
-                .message-area {
-                    position: relative;
-                    top: 20px;
-                    left: 50px;
-                    width: 400px;
-                    padding: 20px;
-                    background-color: #e9e5da;
-                    border-radius: 8px;
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                }
-        </style>
+        <link rel="stylesheet" type="text/css" href="Assets/CSS/Contact.css">
     </head>
     <body>
         <header class="header">
@@ -63,31 +29,48 @@
 
         <p id="Written-text">Feel free to reach out to us with any questions or feedback.</p>
 
-        <container>
+        <div class="contact-container">
             <section class="message-area">
-                <p>Send us a message</p>
-                <form>
+                <p><i class="fa fa-paper-plane"></i> Send us a message</p>
+                <form id="contactForm">
                     <div class="form-group">
-                        <label><i class="fa fa-user"></i> Full Name:</label> <br>
-                        <input type="text" name="Name" placeholder="Enter your full name" required>
+                        <label><i class="fa fa-user"></i> Full Name:</label>
+                        <input type="text" id="name" name="Name" placeholder="Enter your full name">
                     </div>
-                    <div>
-                        <label>Email: </label> <br>
-                        <input type="email" name="Email" placeholder="Enter your email" required>
+                    <div class="form-group">
+                        <label><i class="fa fa-envelope"></i> Email:</label>
+                        <input type="email" id="email" name="Email" placeholder="Enter your email">
                     </div>
-                    <div>
-                        <label>Message: </label> <br>
-                        <textarea name="Message" placeholder="Write your message here..." required></textarea>
+                    <div class="form-group">
+                        <label><i class="fa fa-comment"></i> Message:</label>
+                        <textarea id="message" name="Message" placeholder="Write your message here..."></textarea>
+                    </div>
 
                     <button type="submit" class="submit-btn">
-                        <i class="fa fa-check-circle"></i> Submit Borrow Request
+                        <i class="fa fa-paper-plane"></i> Send Message
                     </button>
-                    </form>
+                </form>
             </section>
 
             <section class="information-area">
-
+                <p><i class="fa fa-info-circle"></i> Contact Information</p>
+                <div class="info-item">
+                    <i class="fa fa-envelope"></i>
+                    <p>akhileshbhatt046@gmail.com</p>
+                </div>
+                <div class="info-item">
+                    <i class="fa fa-phone"></i>
+                    <p>9702617996</p>
+                </div>
+                <div class="info-item">
+                    <i class="fa fa-map-marker"></i>
+                    <p>shantinagar, Kathmandu</p>
+                </div>
+                <img src="Assets/Images/Contact book.png" alt="Contact Image" class="contact-image">
             </section>
-        </container>
+        </div>
+
+        <!-- Simple JavaScript for form validation -->
+        <script src="Assets/JS/Contact.js"></script>
     </body>
 </html>
