@@ -1,13 +1,128 @@
 <!DOCTYPE html>
 <html>  
     <head>
-        <title>Contact</title>
+        <title>Account</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="Assets/CSS/Navigation Bar.css">
 
         <style>
             /* Write CSS code here */
+ <style>
+        .account-wrapper {
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            background-color: #f9f9f9;
+        }
 
+        .account-container {
+            display: flex;
+            width: 100%;
+            max-width: 1100px;
+            gap: 30px;
+        }
+
+        /* Sidebar Styles */
+        .account-sidebar {
+            width: 280px;
+        }
+
+        .sidebar-title {
+            font-size: 22px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .menu-item {
+            text-decoration: none;
+            color: #333;
+            background-color: #d1d1d1;
+            padding: 12px 15px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .menu-item.active {
+            background-color: #f0f0f0;
+            border-left: 6px solid #f39c12; /* Matching the orange indicator */
+        }
+
+        /* Main Panel Styles */
+        .account-details-panel {
+            flex: 1;
+            background-color: #e2e2e2;
+            padding: 30px;
+            border-radius: 2px;
+        }
+
+        .panel-heading {
+            color: #555;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .details-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .avatar-frame {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid #999;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .avatar-frame img { width: 100%; height: auto; }
+
+        .form-column { flex: 1; display: flex; flex-direction: column; gap: 15px; }
+
+        .input-field label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .input-field input {
+            width: 100%;
+            padding: 10px;
+            background-color: #b8b8b8;
+            border: 1px solid #777;
+            outline: none;
+        }
+
+        .btn-action {
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            background-color: #a0a0a0;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .save-btn { margin-top: 10px; width: fit-content; }
+
+        .account-stats {
+            margin-top: 40px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .account-stats h4 { margin-bottom: 10px; }
+        .account-stats p { font-size: 14px; margin-bottom: 5px; }
+    </style>
 
 
 
@@ -34,6 +149,59 @@
 
         <!-- Write Code form here -->
 
+<main class="account-wrapper">
+        <div class="account-container">
+            
+            <aside class="account-sidebar">
+                <h2 class="sidebar-title">My Account</h2>
+                <div class="sidebar-menu">
+                    <a href="#" class="menu-item active">Account Details</a>
+                    <a href="#" class="menu-item">Borrowed Books</a>
+                    <a href="#" class="menu-item">Books Requests</a>
+                    <a href="#" class="menu-item">Change Password</a>
+                </div>
+            </aside>
+
+            <section class="account-details-panel">
+                <h3 class="panel-heading">Account Details</h3>
+                
+                <div class="details-content">
+                    <div class="avatar-column">
+                        <div class="avatar-frame">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Library" alt="Profile">
+                        </div>
+                        <button type="button" class="btn-action">Change Picture</button>
+                    </div>
+
+                    <div class="form-column">
+                        <div class="input-field">
+                            <label>Full Name</label>
+                            <input type="text" name="fullname">
+                        </div>
+                        <div class="input-field">
+                            <label>Student Id</label>
+                            <input type="text" name="studentid">
+                        </div>
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input type="email" name="useremail">
+                        </div>
+                        <div class="input-field">
+                            <label>Phone</label>
+                            <input type="text" name="userphone">
+                        </div>
+                        <button type="submit" class="btn-action save-btn">Save Changes</button>
+                    </div>
+                </div>
+
+                <div class="account-stats">
+                    <h4>Account Information</h4>
+                    <p>Total books Borrowed: <strong>5</strong></p>
+                    <p>Pending Book Request: <strong>2</strong></p>
+                </div>
+            </section>
+        </div>
+    </main>
 
 
     </body>
