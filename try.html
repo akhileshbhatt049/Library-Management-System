@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>  
+    <head>
+        <title>Request Books</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="Assets/CSS/Navigation Bar.css">
+        <style>
+            .details{
+                margin-left: 50px;
+            }
+
+            .divider-light {
+                width: 350px;
+                height: 5px;
+                background-color: rgba(97, 95, 95, 0.25);
+                margin: -25px auto 20px 30px;
+                border: 0;
+                border-radius: 2px;
+            }
+
+            .form-request {
+                margin-bottom: 20px;
+            }
+
+            .form-request label {
+                display: block;
+                font-weight: normal;
+                margin-bottom: 5px;
+            }
+
+            .form-request input {
+                width: 100%;
+                padding: 8px 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 14px;
+                box-sizing: border-box;
+            }
+
+            .submit-btn {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 14px;
+                margin-top: 10px;
+            }
+
+            .submit-btn:hover {
+                background-color: #45a049;
+            }
+
+            section {
+                display: flex;
+                gap: 40px;
+                margin-left: 50px;
+                margin-right: 50px;
+                margin-top: 20px;
+            }
+
+            form {
+                flex: 1;
+            }
+
+            section img {
+                width: 300px;
+                height: auto;
+                object-fit: contain;
+            }
+
+            p {
+                margin-left: 50px;
+                margin-right: 50px;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            .fa {
+                margin-right: 5px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- Navigation Bar -->
+        <header class="header">
+            <div class="Logo-Name">
+                <img src="Assets/Images/logo.png" alt="Library Logo">
+                <span>Library Management System</span>
+            </div>
+
+            <nav class="nav">
+                <a href="#" class="nav-link" id="Size">Home</a>
+                <a href="#" class="nav-link" id="Size">Books</a>
+                <a href="#" class="nav-link active" id="Size">Borrow Books</a>
+                <a href="#" class="nav-link" id="Size">Syllabus</a>
+                <a href="#" class="nav-link" id="Size">Request Books</a>
+                <a href="#" class="nav-link" id="Size">Contacts</a>
+                <a href="#" class="nav-link" id="Size">Account</a>
+            </nav>
+        </header>
+
+        <!-- Body Part -->
+        <h1 class="details">Request a new book</h1>
+        <hr class="divider-light" />
+        <p>Fill out the form below to request a new book to be added to the library. 
+            Our team will review your request and get back to you as soon as possible.</p>
+
+        <!-- Form Part -->
+        <section>
+            <form action="#" method="post">
+                <div class="form-request">
+                    <label><i class="fa fa-user"></i> Name:</label>
+                    <input type="text" id="name" name="Name" placeholder="Name">
+                </div>
+                <div class="form-request">
+                    <label><i class="fa fa-envelope"></i> Email:</label>
+                    <input type="email" id="email" name="Email" placeholder="Email">
+                </div>
+                <div class="form-request">
+                    <label><i class="fa fa-book"></i> Book Title:</label>
+                    <input type="text" id="Book title" name="Book title" placeholder="Book Title">
+                </div>
+                <div class="form-request">
+                    <label><i class="fa fa-user"></i> Author:</label>
+                    <input type="text" id="Author" name="Author" placeholder="Author Name">
+                </div>
+                <div class="form-request">
+                    <label><i class="fa fa-pencil"></i> Reason for Request:</label>
+                    <input type="text" id="reason" name="reason" placeholder="Enter the reason you would like this book added to the library...">
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fa fa-paper-plane"></i> Submit Request
+                </button>
+            </form>
+            <img src="Assets/Images/Request book.png" alt="Book" title="Book">
+        </section>
+    </body>
+</html>
