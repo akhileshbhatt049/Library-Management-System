@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>  
+    <head>
+        <title>Request Books - Library Management System</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="Assets/CSS/Navigation Bar.css">
+        <style>
+            /* Global Styles */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            body {
+                overflow-x: hidden;
+                width: 100%;
+                background-color: #fefaf0;
+            }
+
+            /* Page Header Styles */
+            .page-header {
+                margin: 20px 0 0 50px;
+            }
+            
+            .page-header h1 {
+                font-size: 40px;
+                color: #343333d7;
+                margin-bottom: 5px;
+            }
+            
+            .divider-light {
+                width: 350px;
+                height: 5px;
+                background-color: #a74944d0;
+                margin: 10px 0 20px 0;
+                border: 0;
+                border-radius: 2px;
+            }
+            
+            .page-description {
+                margin: 0 0 30px 50px;
+                font-size: 18px;
+                color: #555;
+                max-width: 800px;
+                line-height: 1.6;
+            }
+
+            /* Main Content Container */
+            .request-container {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 40px;
+                margin: 20px 50px 50px 50px;
+                flex-wrap: wrap;
+            }
+
+            /* Form Section */
+            .form-section {
+                flex: 1;
+                min-width: 450px;
+                max-width: 600px;
+                background: linear-gradient(145deg, #f8f5ee, #e9e5da);
+                border-radius: 20px;
+                padding: 30px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+                transition: transform 0.3s ease;
+            }
+
+            .form-section:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 30px rgba(167, 73, 68, 0.2);
+            }
+
+            .form-section h2 {
+                font-size: 28px;
+                color: #a74944d0;
+                margin-bottom: 25px;
+                padding-bottom: 10px;
+                border-bottom: 3px solid #ffbd595e;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .form-section h2 i {
+                font-size: 28px;
+            }
+
+            /* Form Groups */
+            .form-request {
+                margin-bottom: 20px;
+            }
+
+            .form-request label {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 18px;
+                color: #343333d7;
+                font-weight: 500;
+                margin-bottom: 8px;
+            }
+
+            .form-request label i {
+                color: #a74944d0;
+                width: 22px;
+                font-size: 18px;
+            }
+
+            .form-request input,
+            .form-request textarea {
+                width: 100%;
+                padding: 14px 16px;
+                border: 2px solid #e0e0e0;
+                border-radius: 12px;
+                font-size: 16px;
+                transition: all 0.3s ease;
+                background-color: white;
+                font-family: inherit;
+            }
+
+            .form-request input:focus,
+            .form-request textarea:focus {
+                outline: none;
+                border-color: #ffbd59;
+                box-shadow: 0 0 0 4px rgba(255, 189, 89, 0.2);
+            }
+
+            .form-request textarea {
+                min-height: 120px;
+                resize: vertical;
+            }
+
+            /* Required Field Indicator */
+            .required::after {
+                content: " *";
+                color: #ff5961;
+                font-weight: bold;
+            }
+
+            /* Submit Button */
+            .submit-btn {
+                background: linear-gradient(135deg, #22eca9, #74b7ee);
+                color: white;
+                border: none;
+                padding: 16px 30px;
+                border-radius: 40px;
+                font-size: 20px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+                width: 100%;
+                margin-top: 15px;
+                border: 2px solid transparent;
+            }
+
+            .submit-btn:hover {
+                background: linear-gradient(135deg, #f0cd5c, #2ddd45);
+                transform: scale(1.02);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .submit-btn i {
+                font-size: 22px;
+            }
+
+            /* Illustration Section */
+            .illustration-section {
+                flex: 0.8;
+                min-width: 300px;
+                max-width: 400px;
+                background: linear-gradient(145deg, #f8f5ee, #e9e5da);
+                border-radius: 20px;
+                padding: 30px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+                transition: transform 0.3s ease;
+                text-align: center;
+            }
+
+            .illustration-section:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 30px rgba(167, 73, 68, 0.2);
+            }
+
+            .illustration-section h3 {
+                font-size: 24px;
+                color: #a74944d0;
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+                border-bottom: 3px solid #ffbd595e;
+            }
+
+            .illustration-section img {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                border-radius: 15px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                transition: transform 0.3s ease;
+                border: 3px solid #ffbd595e;
+                margin-top: 10px;
+            }
+
+            .illustration-section img:hover {
+                transform: scale(1.05);
+            }
+
+            .illustration-caption {
+                margin-top: 20px;
+                font-size: 16px;
+                color: #555;
+                font-style: italic;
+            }
+
+            /* Success Message (for future backend use) */
+            .success-message {
+                background-color: #22eca933;
+                border: 2px solid #22eca9;
+                border-radius: 12px;
+                padding: 15px;
+                margin-bottom: 20px;
+                display: none;
+                align-items: center;
+                gap: 12px;
+                color: #2c5a4a;
+                font-weight: 500;
+            }
+
+            .success-message i {
+                font-size: 24px;
+                color: #22eca9;
+            }
+
+            /* Error Message Styles */
+            .error-message {
+                color: #ff5961;
+                font-size: 14px;
+                margin-top: 5px;
+                margin-left: 32px;
+            }
+
+            input.error, textarea.error {
+                border-color: #ff5961 !important;
+            }
+
+            input.valid, textarea.valid {
+                border-color: #22eca9 !important;
+            }
+
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                .page-header {
+                    margin-left: 20px;
+                }
+                
+                .page-description {
+                    margin-left: 20px;
+                    margin-right: 20px;
+                    font-size: 16px;
+                }
+                
+                .request-container {
+                    margin: 20px;
+                }
+                
+                .form-section {
+                    min-width: 100%;
+                }
+                
+                .illustration-section {
+                    min-width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="header">
+            <div class="Logo-Name">
+                <img src="Assets/Images/logo.png" alt="Library Logo">
+                <span>Library Management System</span>
+            </div>
+
+            <nav class="nav">
+                <a href="#" class="nav-link" id="Size">Home</a>
+                <a href="#" class="nav-link" id="Size">Books</a>
+                <a href="#" class="nav-link" id="Size">Borrow Books</a>
+                <a href="#" class="nav-link" id="Size">Syllabus</a>
+                <a href="#" class="nav-link active" id="Size">Request Books</a>
+                <a href="#" class="nav-link" id="Size">Contacts</a>
+                <a href="#" class="nav-link" id="Size">Account</a>
+            </nav>
+        </header>
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Request a New Book</h1>
+            <hr class="divider-light" />
+        </div>
+        
+        <p class="page-description">
+            Fill out the form below to request a new book to be added to the library. 
+            Our team will review your request and get back to you as soon as possible.
+        </p>
+
+        <!-- Main Content Container -->
+        <div class="request-container">
+            <!-- Form Section -->
+            <section class="form-section">
+                <h2><i class="fa fa-pencil-square-o"></i> Book Request Form</h2>
+                
+                <!-- Success Message Placeholder (hidden by default) -->
+                <div class="success-message" id="successMessage">
+                    <i class="fa fa-check-circle"></i>
+                    <span>Thank you! Your book request has been submitted successfully.</span>
+                </div>
+                
+                <form action="#" id="requestForm">
+                    <div class="form-request">
+                        <label><i class="fa fa-user"></i> Full Name <span class="required"></span></label>
+                        <input type="text" id="name" name="Name" placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-request">
+                        <label><i class="fa fa-envelope"></i> Email <span class="required"></span></label>
+                        <input type="email" id="email" name="Email" placeholder="Enter your email address">
+                    </div>
+                    
+                    <div class="form-request">
+                        <label><i class="fa fa-book"></i> Book Title <span class="required"></span></label>
+                        <input type="text" id="bookTitle" name="BookTitle" placeholder="Enter the book title">
+                    </div>
+                    
+                    <div class="form-request">
+                        <label><i class="fa fa-user"></i> Author <span class="required"></span></label>
+                        <input type="text" id="author" name="Author" placeholder="Enter the author's name">
+                    </div>
+                    
+                    <div class="form-request">
+                        <label><i class="fa fa-comment"></i> Reason for Request <span class="required"></span></label>
+                        <textarea id="reason" name="Reason" placeholder="Enter the reason you would like this book added to the library..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fa fa-paper-plane"></i> Submit Request
+                    </button>
+                </form>
+            </section>
+
+            <!-- Illustration Section -->
+            <section class="illustration-section">
+                <h3><i class="fa fa-picture-o"></i> Request Illustration</h3>
+                <img src="Assets/Images/Request book.png" alt="Book Request Illustration" title="Request a New Book">
+                <p class="illustration-caption">
+                    <i class="fa fa-quote-left"></i> 
+                    Your next favorite book could be just a request away!
+                    <i class="fa fa-quote-right"></i>
+                </p>
+            </section>
+        </div>
+
+        <!-- JavaScript for Form Validation -->
+        <script>
+            document.getElementById('requestForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Get form fields
+                const name = document.getElementById('name');
+                const email = document.getElementById('email');
+                const bookTitle = document.getElementById('bookTitle');
+                const author = document.getElementById('author');
+                const reason = document.getElementById('reason');
+                
+                // Remove any existing error messages
+                document.querySelectorAll('.error-message').forEach(el => el.remove());
+                
+                // Reset classes
+                [name, email, bookTitle, author, reason].forEach(field => {
+                    field.classList.remove('error', 'valid');
+                });
+                
+                let isValid = true;
+                
+                // Validate Name (only alphabets and spaces)
+                if (!name.value.trim()) {
+                    showError(name, 'Name is required');
+                    isValid = false;
+                } else if (!/^[A-Za-z\s]+$/.test(name.value.trim())) {
+                    showError(name, 'Name should only contain letters and spaces');
+                    isValid = false;
+                } else {
+                    name.classList.add('valid');
+                }
+                
+                // Validate Email
+                if (!email.value.trim()) {
+                    showError(email, 'Email is required');
+                    isValid = false;
+                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+                    showError(email, 'Please enter a valid email address');
+                    isValid = false;
+                } else {
+                    email.classList.add('valid');
+                }
+                
+                // Validate Book Title
+                if (!bookTitle.value.trim()) {
+                    showError(bookTitle, 'Book title is required');
+                    isValid = false;
+                } else {
+                    bookTitle.classList.add('valid');
+                }
+                
+                // Validate Author
+                if (!author.value.trim()) {
+                    showError(author, 'Author name is required');
+                    isValid = false;
+                } else {
+                    author.classList.add('valid');
+                }
+                
+                // Validate Reason
+                if (!reason.value.trim()) {
+                    showError(reason, 'Reason is required');
+                    isValid = false;
+                } else if (reason.value.trim().length < 10) {
+                    showError(reason, 'Please provide a more detailed reason (at least 10 characters)');
+                    isValid = false;
+                } else {
+                    reason.classList.add('valid');
+                }
+                
+                // If valid, show success message
+                if (isValid) {
+                    const successMsg = document.getElementById('successMessage');
+                    successMsg.style.display = 'flex';
+                    
+                    alert(`Thank you ${name.value.trim()}! Your request for "${bookTitle.value.trim()}" has been submitted.`);
+                    
+                    this.reset();
+                    
+                    [name, email, bookTitle, author, reason].forEach(field => {
+                        field.classList.remove('valid');
+                    });
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        successMsg.style.display = 'none';
+                    }, 5000);
+                    
+                    // For future backend integration:
+                    /*
+                    fetch('your-backend-endpoint', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            name: name.value.trim(),
+                            email: email.value.trim(),
+                            bookTitle: bookTitle.value.trim(),
+                            author: author.value.trim(),
+                            reason: reason.value.trim()
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Handle response
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                    */
+                }
+            });
+            
+            function showError(inputElement, message) {
+                inputElement.classList.add('error');
+                
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.innerHTML = `<i class="fa fa-exclamation-circle"></i> ${message}`;
+                
+                inputElement.parentElement.appendChild(errorDiv);
+            }
+            
+            // Real-time validation
+            document.getElementById('name').addEventListener('input', function() {
+                if (this.value.trim() && /^[A-Za-z\s]+$/.test(this.value.trim())) {
+                    this.classList.add('valid');
+                    this.classList.remove('error');
+                } else {
+                    this.classList.remove('valid');
+                }
+            });
+            
+            document.getElementById('email').addEventListener('input', function() {
+                if (this.value.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value.trim())) {
+                    this.classList.add('valid');
+                    this.classList.remove('error');
+                } else {
+                    this.classList.remove('valid');
+                }
+            });
+        </script>
+    </body>
+</html>
