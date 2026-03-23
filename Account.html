@@ -1,37 +1,42 @@
 <!DOCTYPE html>
-<html>  
-    <head>
-        <title>Account</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="Assets/CSS/Navigation Bar.css">
+<html>
 
-        <style>
-            /* Write CSS code here */
- <style>
+<head>
+    <title>Account</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="Assets/CSS/Navigation Bar.css">
+
+    <style>
+        /* Write CSS code here */
+
         .account-wrapper {
-            padding: 40px 20px;
+
             display: flex;
             justify-content: center;
             background-color: #f9f9f9;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            margin: 20px;
         }
 
         .account-container {
             display: flex;
             width: 100%;
-            max-width: 1100px;
-            gap: 30px;
+            max-width: 100%;
+            gap: 0;
         }
 
         /* Sidebar Styles */
         .account-sidebar {
             width: 280px;
+            flex-shrink: 0;
         }
 
         .sidebar-title {
             font-size: 22px;
             border-bottom: 2px solid #333;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
         }
 
         .sidebar-menu {
@@ -47,19 +52,21 @@
             padding: 12px 15px;
             font-weight: 600;
             font-size: 14px;
+            display: block;
+            margin-bottom: 8px;
         }
 
         .menu-item.active {
             background-color: #f0f0f0;
-            border-left: 6px solid #f39c12; /* Matching the orange indicator */
+            border-left: 6px solid #f39c12;
         }
 
         /* Main Panel Styles */
         .account-details-panel {
-            flex: 1;
+            flex-grow: 1;
             background-color: #e2e2e2;
-            padding: 30px;
-            border-radius: 2px;
+            padding: 40px;
+            min-height: 80vh;
         }
 
         .panel-heading {
@@ -83,9 +90,18 @@
             margin-bottom: 15px;
         }
 
-        .avatar-frame img { width: 100%; height: auto; }
+        .avatar-frame img {
+            width: 100%;
+            height: auto;
+        }
 
-        .form-column { flex: 1; display: flex; flex-direction: column; gap: 15px; }
+
+        .form-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
         .input-field label {
             display: block;
@@ -95,7 +111,7 @@
         }
 
         .input-field input {
-            width: 100%;
+            width: 70%;
             padding: 10px;
             background-color: #b8b8b8;
             border: 1px solid #777;
@@ -109,49 +125,61 @@
             background-color: #a0a0a0;
             cursor: pointer;
             font-weight: bold;
-            box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
         }
 
-        .save-btn { margin-top: 10px; width: fit-content; }
+        .save-btn {
+            margin-top: 10px;
+            width: fit-content;
+        }
 
         .account-stats {
-            margin-top: 40px;
+            margin-top: 50px;
             border-top: 1px solid #ccc;
             padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
-        .account-stats h4 { margin-bottom: 10px; }
-        .account-stats p { font-size: 14px; margin-bottom: 5px; }
+        .account-stats h4 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .account-stats p {
+            font-size: 14px;
+            margin-bottom: 5px 0;
+        }
     </style>
 
 
 
 
-        </style>
-    </head>
-    <body>
-        <header class="header">
-            <div class="Logo-Name">
-                <img src="Assets/Images/logo.png" alt="Library Logo">
-                <span>Library Management System</span>
-            </div>
+    </style>
+</head>
 
-            <nav class="nav">
-                <a href="#" class="nav-link" id="Size">Home</a>
-                <a href="#" class="nav-link" id="Size">Books</a>
-                <a href="#" class="nav-link " id="Size">Borrow Books</a>
-                <a href="#" class="nav-link" id="Size">Syllabus</a>
-                <a href="#" class="nav-link" id="Size">Request Books</a>
-                <a href="#" class="nav-link" id="Size">Contacts</a>
-                <a href="#" class="nav-link active" id="Size">Account</a>
-            </nav>
-        </header>
+<body>
+    <header class="header">
+        <div class="Logo-Name">
+            <img src="Assets/Images/logo.png" alt="Library Logo">
+            <span>Library Management System</span>
+        </div>
 
-        <!-- Write Code form here -->
+        <nav class="nav">
+            <a href="#" class="nav-link" id="Size">Home</a>
+            <a href="#" class="nav-link" id="Size">Books</a>
+            <a href="#" class="nav-link " id="Size">Borrow Books</a>
+            <a href="#" class="nav-link" id="Size">Syllabus</a>
+            <a href="#" class="nav-link" id="Size">Request Books</a>
+            <a href="#" class="nav-link" id="Size">Contacts</a>
+            <a href="#" class="nav-link active" id="Size">Account</a>
+        </nav>
+    </header>
 
-<main class="account-wrapper">
+    <main class="account-wrapper">
         <div class="account-container">
-            
             <aside class="account-sidebar">
                 <h2 class="sidebar-title">My Account</h2>
                 <div class="sidebar-menu">
@@ -164,7 +192,7 @@
 
             <section class="account-details-panel">
                 <h3 class="panel-heading">Account Details</h3>
-                
+
                 <div class="details-content">
                     <div class="avatar-column">
                         <div class="avatar-frame">
@@ -202,7 +230,6 @@
             </section>
         </div>
     </main>
+</body>
 
-
-    </body>
 </html>
