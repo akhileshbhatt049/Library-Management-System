@@ -60,7 +60,7 @@
                     <span class="close-btn" onclick="closeModal()">&times;</span>
                 </div>
                 
-            <form id="borrowForm" class="borrow-form">                    
+            <form action="PHP/Borrowbooks.php" method="post" id="borrowForm" class="borrow-form">                    
                     <!-- Book Name (auto-filled) -->
                     <div class="form-group">
                         <label><i class="fa fa-book"></i> Book Name:</label>
@@ -98,13 +98,13 @@
                         <input type="date" id="ReturnDate" name="ReturnDate" min="" required>
                     </div>
 
-                    <button type="submit" class="submit-btn">
+                    <button type="submit" name="submit" class="submit-btn">
                         <i class="fa fa-check-circle"></i> Submit Borrow Request
                     </button>
                 </form>
             </div>
         </div>
         <script src="Assets/JS/borrow books.js"> </script>
-        <script src="Assets/JS/Borrow books form validation.js"> </script>
+        <!-- <script src="Assets/JS/Borrow books form validation.js"> </script> -->
     </body>
 </html>
