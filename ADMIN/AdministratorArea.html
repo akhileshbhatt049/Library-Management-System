@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Administrator Area</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+        body {
+            margin: 0;
+            font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+            background-color: #fefaf0;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            background-color: #ffbd59;
+        }
+
+        .Main-name {
+            display: flex;
+            align-items: center;
+            align-self: center;
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+        .header-logo {
+            width: 80px;
+            background-color: #ffbd59;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            justify-content: center;
+            margin-left: 25% ;
+            margin-right: 25%;
+            gap: 40px;
+        }
+        .container > a > button{
+            width: 100%;
+            padding: 20px;
+            background-color: #e9e5da;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <section class="Main-name">
+            <img src="Assets/Images/logo.png" class="header-logo" alt="Library Logo" />
+            <span>Library Management System</span>
+        </section>
+        <section>
+            <nav>
+                <a href="#">Dashboard</a>
+                <a href="#">Manage Books</a>
+                <a href="#">Borrow Request</a>
+                <a href="#">Syllabus</a>
+                <a href="#">New Books Request</a>
+                <a href="#">Feedbacks</a>
+                <a href="#">User Accounts</a>
+            </nav>
+        </section>
+    </header>
+
+    <!-- Body Part -->
+    <section>
+        <h1>Administrator Dashboard</h1>
+        <p>Manage all library operations efficiently form here.</p>
+    </section>
+
+    <div class="container">
+        <a href="#"><button>Manage books 
+            <p>upload, edit, or remove books</p>
+        </button></a>
+        <a href="#"><button> Borror Request
+            <p>Approve/disapprove borrow request</p>
+        </button></a>
+        <a href="#"><button>Manage Syllabus
+            <p>Upload and manage academic syllabus</p>
+        </button></a>
+        <a href="#"><button>Book requests
+            <p>Review and respond to books request</p>
+        </button></a>
+        <a href="#"><button>Feedbacks
+            <p>View and respond to student request</p>
+        </button></a>
+        <a href="#"><button>User Accounts
+            <p>Manage library user accounts</p>
+        </button></a>
+        
+    </div>
+</body>
+
+</html>

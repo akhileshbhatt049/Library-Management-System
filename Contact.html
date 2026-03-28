@@ -32,7 +32,7 @@
         <div class="contact-container">
             <section class="message-area">
                 <p><i class="fa fa-paper-plane"></i> Send us a message</p>
-                <form id="contactForm">
+                <form id="contactForm" action="PHP/Contact.php" method="post">
                     <div class="form-group">
                         <label><i class="fa fa-user"></i> Full Name:</label>
                         <input type="text" id="name" name="Name" placeholder="Enter your full name">
@@ -46,7 +46,7 @@
                         <textarea id="message" name="Message" placeholder="Write your message here..."></textarea>
                     </div>
 
-                    <button type="submit" class="submit-btn">
+                    <button type="submit" name="submit" class="submit-btn">
                         <i class="fa fa-paper-plane"></i> Send Message
                     </button>
                 </form>
@@ -71,6 +71,6 @@
         </div>
 
         <!-- Simple JavaScript for form validation -->
-        <script src="Assets/JS/Contact.js"></script>
+        <!-- <script src="Assets/JS/Contact.js"></script> -->
     </body>
 </html>
