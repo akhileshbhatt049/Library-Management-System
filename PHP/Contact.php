@@ -9,19 +9,19 @@
     Name VARCHAR(50),
     Email VARCHAR(90),
     Message TEXT
-)";
+    )";
 
-mysqli_query($conn, $CreateTable) or die("Failed to create table");
-if(isset($_POST['submit']))
-    {
-        $Name = $_POST["Name"];
-        $Email = $_POST["Email"];
-        $Message = $_POST["Message"];
+    mysqli_query($conn, $CreateTable) or die("Failed to create table");
+    if(isset($_POST['submit']))
+        {
+            $Name = $_POST["Name"];
+            $Email = $_POST["Email"];
+            $Message = $_POST["Message"];
 
-        $insert = "INSERT INTO Contacts (Name, Email, Message) VALUES ('$Name', '$Email', '$Message')";
+            $insert = "INSERT INTO Contacts (Name, Email, Message) VALUES ('$Name', '$Email', '$Message')";
 
-if(!mysqli_query($conn,$insert)){
-    die("Error: " . mysqli_error($conn));
-}        echo "Thank you, $Name! Your message has been sucessfully send.";
+    if(!mysqli_query($conn,$insert)){
+        die("Error: " . mysqli_error($conn));
+    }        echo "Thank you, $Name! Your message has been sucessfully send.";
     }
 ?>
