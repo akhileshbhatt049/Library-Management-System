@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.querySelector('form');
+// document.addEventListener('DOMContentLoaded', function () {
+//     const form = document.querySelector('form');
 
     // Get all form fields
     const nameInput = document.getElementById('name');
@@ -260,4 +260,4 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Please fill out all fields correctly before submitting.');
         }
     });
-});
+// });
