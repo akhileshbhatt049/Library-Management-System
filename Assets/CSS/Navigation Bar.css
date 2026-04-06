@@ -10,7 +10,7 @@ header {
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 0px 15px;
-  background-color: #ffbd595e;
+  background-color: #fec776;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -60,3 +60,33 @@ nav {
 #Size {
   font-size: 20px;
 }
+
+@media (max-width: 575.98px) {
+  .Logo-Name {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 15px;
+  }
+  .Logo-Name > span {
+    font-size: 10px;
+  }
+  .Logo-Name > img {
+    height: 50px;
+    width: 50px;
+  }
+  .header {
+    flex-direction: column;
+  }
+  .nav {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .nav-link {
+    font-size: 10px;
+  }
+
+}
+
