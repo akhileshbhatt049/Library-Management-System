@@ -11,9 +11,6 @@ header {
   flex-wrap: wrap;
   padding: 0px 15px;
   background-color: #fec776;
-  /* position: sticky; */
-  /* top: 0; */
-  /* z-index: 10; */
   margin-bottom: 5px;
 }
 .Logo-Name {
@@ -61,40 +58,9 @@ nav {
   font-size: 20px;
 }
 
-/* @media (max-width: 575.98px) {
-  .Logo-Name {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-top: 15px;
-  }
-  .Logo-Name > span {
-    font-size: 10px;
-  }
-  .Logo-Name > img {
-    height: 50px;
-    width: 50px;
-  }
-  .header {
-    display: flex;
-    flex-direction: column;
-  }
-  .nav {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 10px;
-    margin-bottom: 5px;
-  }
-  
-  .nav-link {
-    font-size: 10px;
-  }
 
-}
- */
-
-
- @media (max-width: 600.98px) {
+/* Responsive Design for Mobile Devices */
+ @media (max-width: 575.98px) {
 
   .header {
     flex-direction: column;
