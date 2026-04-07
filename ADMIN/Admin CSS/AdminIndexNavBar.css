@@ -1,0 +1,50 @@
+        body {
+            margin: 0;
+            font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+            background-color: #fefaf0;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            background-color: #ffbd594e;
+        }
+
+        .Main-name {
+            display: flex;
+            align-items: center;
+            align-self: center;
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+        .header-logo {
+            width: 80px;
+            background-color: #ffbd5900;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            justify-content: center;
+            margin-left: 25% ;
+            margin-right: 25%;
+            gap: 40px;
+        }
+        .container > a > button{
+            width: 100%;
+            padding: 20px;
+            background-color: #e9e5da;
+            cursor: pointer;
+        }

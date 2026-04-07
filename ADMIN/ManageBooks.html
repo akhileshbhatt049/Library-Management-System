@@ -1,0 +1,314 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Manage Books</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="Admin CSS/AdminNavBar.css" />
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+        background-color: #fefaf0;
+      }
+
+      .Main-name {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        font-size: 25px;
+        background-color: #ffbd594e;
+        font-weight: 600;
+      }
+
+      .header-logo {
+        width: 80px;
+        background-color: #ffbd5900;
+      }
+
+      /* Left Area */
+      nav {
+        display: flex;
+        flex-direction: column;
+        background-color: #ebd8bc4e;
+        padding: 30px;
+        max-width: max-content;
+      }
+      nav > a {
+        text-decoration: none;
+        color: #333;
+        font-size: 20px;
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin: 10px;
+        transition: background-color 0.3s ease;
+      }
+
+      /* Right Area */
+      .container {
+        display: flex;
+        gap: 50px;
+      }
+
+      /* Manage-books */
+      .Manage-books {
+        display: flex;
+        background-color: #ebd8bc4e;
+        justify-content: space-around;
+        padding: 10px;
+        border-radius: 5px;
+        max-width: max-content;
+        display: none;
+      }
+
+      .Upload-books {
+        background-color: #ebd8bc4e;
+        margin-right: 40px;
+        padding: 0px 60px;
+      }
+      .Upload-books > form > input,
+      textarea {
+        padding: 5px;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 15px;
+      }
+
+      /* Borrow-request */
+      .Borrow-request {
+        background-color: #ebd8bc4e;
+        padding: 30px;
+        border-radius: 5px;
+        max-width: max-content;
+        display: none;
+      }
+
+      /* Syllabus */
+      .Syllabus {
+        background-color: #ebd8bc4e;
+        padding: 30px;
+        border-radius: 5px;
+        max-width: max-content;
+        display: none;
+      }
+
+      /* Books-Request */
+      .Books-Request {
+        background-color: #ebd8bc4e;
+        padding: 30px;
+        border-radius: 5px;
+        max-width: max-content;
+        display: none;
+      }
+
+      /* Contact-us */
+      .Contact-us {
+        background-color: #ebd8bc4e;
+        padding: 30px;
+        border-radius: 5px;
+        max-width: max-content;
+        display: none;
+      }
+
+      /* User-Account */
+      .User-Account {
+        background-color: #ebd8bc4e;
+        padding: 30px;
+        border-radius: 5px;
+        max-width: max-content;
+        display: none;
+      }
+    </style>
+    <script src="Admin JS/Sidebar.js"></script>
+  </head>
+
+  <body>
+    <section class="Main-name">
+      <img
+        src="../Assets/Images/logo.png"
+        class="header-logo"
+        alt="Library Logo"
+      />
+      <span>Library Management System</span>
+    </section>
+
+    <div class="container">
+      <nav>
+        <a href="AdministratorArea.html" id="Dashboard">Dashboard</a>
+        <a href="#" id="ManageBooks">Manage Books</a>
+        <a href="#" id="BorrowRequest">Borrow Request</a>
+        <a href="#" id="Syllabus">Syllabus</a>
+        <a href="#" id="NewBooksRequest">New Books Request</a>
+        <a href="#" id="Feedbacks">Feedbacks</a>
+        <a href="#" id="UserAccounts">User Accounts</a>
+      </nav>
+
+      <div class="Main-content">
+        <div class="Manage-books" id="Manage_Books">
+          <div class="Upload-books">
+            <h1>Manage Books</h1>
+            <h3>Upload new books to the library collection.</h3>
+
+            <form action="#" method="post" enctype="multipart/form-data">
+              <label for="bookTitle">Book Title:</label><br />
+              <input type="text" name="bookTitle" required /><br /><br />
+
+              <label for="author">Author:</label><br />
+              <input type="text" name="author" required /><br /><br />
+
+              <label for="isbn">ISBN:</label><br />
+              <input type="text" name="isbn" required /><br /><br />
+
+              <label for="description">Description:</label><br />
+              <textarea name="description" required></textarea><br /><br />
+
+              <label for="coverImage">Cover Image:</label><br />
+              <input type="file" name="coverImage" /><br /><br />
+
+              <input type="submit" value="Add Book" />
+            </form>
+          </div>
+          <div class="Existing-books">
+            <h3>Manage existing books in the library collection.</h3>
+            <table border="1" cellpadding="10">
+              <tr>
+                <th>Book Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Cover Image</th>
+                <th>Actions</th>
+              </tr>
+              <tr>
+                <td>Example Book 1</td>
+                <td>Author 1</td>
+                <td>1234567890</td>
+                <td>
+                  <img
+                    src="../Assets/Images/book-cover-placeholder.png"
+                    alt="Book Cover"
+                    width="50"
+                  />
+                </td>
+                <td><button>Edit</button> <button>Delete</button></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="Borrow-request" id="Borrow_Request">
+          <h1>Borrow Requests</h1>
+          <p>Review and manage borrow requests from library users.</p>
+
+          <table border="1" cellpadding="10">
+            <tr>
+              <th>Student Name</th>
+              <th>Student ID</th>
+              <th>Email</th>
+              <th>Book Name</th>
+              <th>Borrow Duration</th>
+              <th>Request Date</th>
+              <th>Status</th>
+            </tr>
+            <tr>
+              <td>Akhliesh Bhatt</td>
+              <td>12345</td>
+              <td>akhliesh.bhatt@example.com</td>
+              <td>Python Programming</td>
+              <td>2 Months</td>
+              <td>2024-06-01</td>
+              <td><button>Approve</button> <button>Reject</button></td>
+            </tr>
+          </table>
+        </div>
+        
+        <div class="Syllabus" id="Syllabusform">
+          <h1>Manage Syllabus</h1>
+          <p>Upload and manage academic syllabus for different courses.</p>
+
+          <form action="#" method="post" enctype="multipart/form-data">
+            <label for="courseName">Course Name:</label><br />
+            <input type="text" name="courseName" required /><br /><br />
+
+            <label for="syllabusFile">Syllabus File:</label><br />
+            <input type="file" name="syllabusFile" required /><br /><br />
+
+            <input type="submit" value="Upload Syllabus" />
+          </form>
+        </div>
+
+        <div class="Books-Request" id="Books_Request">
+          <h1>Book Requests</h1>
+          <p>Review and respond to book requests from library users.</p>
+
+          <table border="1" cellpadding="10">
+            <tr>
+              <th>S.No.</th>
+              <th>Student Name</th>
+              <th>Student ID</th>
+              <th>Book Title</th>
+              <th>Author Name</th>
+              <th>Reason for Request</th>
+              <th>Status</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Akhliesh Bhatt</td>
+              <td>12345</td>
+              <td>The Power of Now</td>
+              <td>Eckhart Tolle</td>
+              <td>Interested in the book</td>
+              <td><button>Approve</button> <button>Reject</button></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="Contact-us" id="Contact_Us">
+          <h1>Contact Us</h1>
+          <p>View and respond to messages from library users.</p>
+
+          <table border="1" cellpadding="10">
+            <tr>
+              <th>S.No.</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Message</th>
+              <th>Response</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Akhliesh Bhatt</td>
+              <td>akhileshbhatt049@gmail.com</td>
+              <td>I have a question about the library hours.</td>
+              <td><button>Respond</button></td>
+            </tr>
+          </table>
+        </div>
+        <div class="User-Account" id="User_Accounts">
+          <h1>User Accounts</h1>
+          <p>Manage library user accounts and permissions.</p>
+
+          <table border="1" cellpadding="10">
+            <tr>
+              <th>S.No.</th>
+              <th>Student ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Password</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>12345</td>
+              <td>Akhliesh Bhatt</td>
+              <td>akhileshbhatt049@gmail.com</td>
+              <td>********</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
