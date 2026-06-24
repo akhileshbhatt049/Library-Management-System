@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="Admin CSS/AdminIndexNavBar.css" />
+    <link rel="stylesheet" href="Admin CSS/AdminBody.css" />
+
      <!-- Google tag (gtag.js) -->
         <script async
             src="https://www.googletagmanager.com/gtag/js?id=G-ZMNWXWP3NH">
@@ -17,6 +19,14 @@
 
             gtag('config', 'G-ZMNWXWP3NH');
         </script>
+
+        <style>
+            #body_body {
+                width: 50px;
+                display: flex;
+                justify-self: center;
+            }
+        </style>
 </head>
 
 <body>
@@ -25,16 +35,14 @@
             <img src="../Assets/Images/logo.png" class="header-logo" alt="Library Logo" />
             <span>Library Management System</span>
         </section>
-        <section>
-            <!-- <nav>
-                <a href="ManageBooks.html">Manage Books</a>
-                <a href="ManageBooks.html">Syllabus</a>
-                <a href="ManageBooks.html">New Books Request</a>
-                <a href="Feedbacks.html">Feedbacks</a>
-                <a href="ManageBooks.html">User Accounts</a>
-                <a href="ManageBooks.html">Borrow Request</a>
-            </nav> -->
-        </section>
+            <nav>
+                <a href="ManageBooks.html" id="Manage_Books">Manage Books</a>
+                <a href="javascript:void(0)" id="BorrowRequest">Borrow Request</a>
+                <a href="javascript:void(0)" id="Syllabus">Syllabus</a>
+                <a href="javascript:void(0)" id="NewBooksRequest">New Books Request</a>
+                <a href="javascript:void(0)" id="Feedbacks">Feedbacks</a>
+                <a href="javascript:void(0)" id="UserAccounts">User Accounts</a>
+            </nav>
     </header>
 
     <section>
@@ -43,23 +51,23 @@
     </section>
 
     <div class="container">
-        <a href="#"><button>Manage books 
-            <p>upload, edit, or remove books</p>
+        <a href="#"><button><img src="../Assets/Images/Book Stack.png" id="body_body"><b>Manage books</b>
+            <p>upload, edit, or remove <br/> books</p>
         </button></a>
-        <a href="#"><button> Borror Request
+        <a href="#"><button><img src="../Assets/Images/Book Stack.png" id="body_body"> <b>Borror Request</b>
             <p>Approve/disapprove borrow request</p>
         </button></a>
-        <a href="#"><button>Manage Syllabus
+        <a href="#"><button><img src="../Assets/Images/Book Stack.png" id="body_body"><b>Manage Syllabus</b>
             <p>Upload and manage academic syllabus</p>
         </button></a>
-        <a href="#"><button>Book requests
+        <a href="#"><button><img src="../Assets/Images/Book Stack.png" id="body_body"><b>Book requests</b>
             <p>Review and respond to books request</p>
         </button></a>
-        <a href="#"><button>Feedbacks
+        <a href="#"><button><img src="../Assets/Images/Book Stack.png" id="body_body"><b>Feedbacks</b>
             <p>View and respond to student request</p>
         </button></a>
-        <a href="#"><button>User Accounts
-            <p>Manage library user accounts</p>
+        <a href="#"><button><img src="../Assets/Images/Book Stack.png" id="body_body"><b>User Accounts</b>
+            <p>Manage library <br/> user accounts</p>
         </button></a>
         
     </div>
