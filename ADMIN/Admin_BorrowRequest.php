@@ -1,6 +1,9 @@
 <?php
-// Connect to database
-$conn = mysqli_connect("localhost", "root", "", "Library_Management_System");
+// Connect to the database
+$conn = mysqli_connect("localhost", "root", "") or die("Failed to connect database");
+$sql = "CREATE DATABASE IF NOT EXISTS Library_Management_System";
+mysqli_query($conn, $sql) or die("Failed to create database");
+mysqli_select_db($conn, "Library_Management_System");
 
 // Approve Request
 if (isset($_POST['approve'])) {
@@ -46,12 +49,12 @@ if ($filter == 'All') {
   <div class="container">
     <nav>
       <a href="AdministratorArea.html">Dashboard</a>
-      <a href="Admin_ManageBooks.php">Manage <br/> Books</a>
-      <a href="Admin_BorrowRequest.php" style="background:#3b82f6; color:white; border-radius:8px;">Borrow <br/> Request</a>
+      <a href="Admin_ManageBooks.php">Manage <br /> Books</a>
+      <a href="Admin_BorrowRequest.php" style="background:#3b82f6; color:white; border-radius:8px;">Borrow <br /> Request</a>
       <a href="Admin_Syllabus.php">Syllabus</a>
-      <a href="Admin_BookRequest.php">New <br/> Books <br/> Request</a>
+      <a href="Admin_BookRequest.php">New <br /> Books <br /> Request</a>
       <a href="Admin_Contact.php">Feedbacks</a>
-      <a href="Admin_UserAccount.php">User's <br/> Accounts</a>
+      <a href="Admin_UserAccount.php">User's <br /> Accounts</a>
     </nav>
 
     <div class="Borrow-request">

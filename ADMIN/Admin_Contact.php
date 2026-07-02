@@ -1,3 +1,37 @@
+  <?php  
+  // Connect to the database
+  $conn = mysqli_connect("localhost", "root", "") or die("Failed to connect database");
+  $sql = "CREATE DATABASE IF NOT EXISTS Library_Management_System";
+  mysqli_query($conn, $sql) or die("Failed to create database");
+  mysqli_select_db($conn, "Library_Management_System");
+
+  // Handle Respond Action
+  if (isset($_POST['respond'])) {
+    $id = $_POST['id'];
+    $response = mysqli_real_escape_string($conn, $_POST['response_message']);
+
+    $query = "UPDATE Contacts SET Response = '$response', Status = 'Replied' WHERE id = $id";
+
+    if (mysqli_query($conn, $query)) {
+      $message = "Response sent successfully!";
+      $message_type = "success";
+    } else {
+      $message = "Error sending response: " . mysqli_error($conn);
+      $message_type = "error";
+    }
+  }
+
+  // Filter
+  $filter = isset($_GET['filter']) ? $_GET['filter'] : 'All';
+  if ($filter == 'All') {
+    $result = mysqli_query($conn, "SELECT * FROM Contacts ORDER BY id DESC");
+  } elseif ($filter == 'Replied') {
+    $result = mysqli_query($conn, "SELECT * FROM Contacts WHERE Status = 'Replied' ORDER BY id DESC");
+  } else {
+    $result = mysqli_query($conn, "SELECT * FROM Contacts WHERE Status IS NULL OR Status = '' ORDER BY id DESC");
+  }
+  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,39 +39,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feedbacks - Library Management System</title>
-  <link rel="stylesheet" href="../ADMIN/Admin CSS/Admin_Data_Nav.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-
-  <?php
-  // Database connection
-  $conn = mysqli_connect("localhost", "root", "", "Library_Management_System");
-
-  // Handle Respond Action
-  if (isset($_POST['respond'])) {
-      $id = $_POST['id'];
-      $response = mysqli_real_escape_string($conn, $_POST['response_message']);
-      
-      $query = "UPDATE Contacts SET Response = '$response', Status = 'Replied' WHERE id = $id";
-      
-      if (mysqli_query($conn, $query)) {
-          $message = "Response sent successfully!";
-          $message_type = "success";
-      } else {
-          $message = "Error sending response: " . mysqli_error($conn);
-          $message_type = "error";
-      }
-  }
-
-  // Filter
-  $filter = isset($_GET['filter']) ? $_GET['filter'] : 'All';
-  if ($filter == 'All') {
-      $result = mysqli_query($conn, "SELECT * FROM Contacts ORDER BY id DESC");
-  } elseif ($filter == 'Replied') {
-      $result = mysqli_query($conn, "SELECT * FROM Contacts WHERE Status = 'Replied' ORDER BY id DESC");
-  } else {
-      $result = mysqli_query($conn, "SELECT * FROM Contacts WHERE Status IS NULL OR Status = '' ORDER BY id DESC");
-  }
-  ?>
+  <link rel="stylesheet" href="../ADMIN/Admin CSS/Admin_Data_Nav.css" />
 
   <style>
     /* General Styles */
@@ -60,7 +63,7 @@
       background: white;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       max-width: 100%;
     }
 
@@ -102,6 +105,7 @@
         opacity: 0;
         transform: translateY(-15px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -139,7 +143,7 @@
     }
 
     .filter-tab .count {
-      background: rgba(0,0,0,0.1);
+      background: rgba(0, 0, 0, 0.1);
       padding: 2px 8px;
       border-radius: 12px;
       font-size: 12px;
@@ -147,7 +151,7 @@
     }
 
     .filter-tab.active .count {
-      background: rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.2);
     }
 
     /* Table Styles */
@@ -162,7 +166,7 @@
       background: white;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
 
     table th {
@@ -266,7 +270,7 @@
       background: #3b82f6;
       color: white;
     }
-    
+
     .btn-respond:hover {
       background: #2563eb;
       transform: translateY(-1px);
@@ -299,7 +303,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.5);
       z-index: 1000;
       justify-content: center;
       align-items: center;
@@ -315,7 +319,7 @@
       border-radius: 12px;
       max-width: 500px;
       width: 90%;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
       animation: modalSlideIn 0.3s ease;
     }
 
@@ -324,6 +328,7 @@
         transform: translateY(-30px);
         opacity: 0;
       }
+
       to {
         transform: translateY(0);
         opacity: 1;
@@ -430,16 +435,16 @@
       table {
         font-size: 12px;
       }
-      
+
       table th,
       table td {
         padding: 8px 6px;
       }
-      
+
       .filter-tabs {
         gap: 5px;
       }
-      
+
       .filter-tab {
         padding: 6px 12px;
         font-size: 12px;
@@ -459,7 +464,7 @@
       table {
         font-size: 11px;
       }
-      
+
       table th,
       table td {
         padding: 6px 4px;
@@ -531,20 +536,20 @@
 
         <!-- Filter Tabs -->
         <div class="filter-tabs">
-          <a href="?filter=All" class="filter-tab <?php if($filter=='All') echo 'active'; ?>">
+          <a href="?filter=All" class="filter-tab <?php if ($filter == 'All') echo 'active'; ?>">
             All
           </a>
-          <a href="?filter=Pending" class="filter-tab <?php if($filter=='Pending') echo 'active'; ?>">
+          <a href="?filter=Pending" class="filter-tab <?php if ($filter == 'Pending') echo 'active'; ?>">
             Pending
           </a>
-          <a href="?filter=Replied" class="filter-tab <?php if($filter=='Replied') echo 'active'; ?>">
+          <a href="?filter=Replied" class="filter-tab <?php if ($filter == 'Replied') echo 'active'; ?>">
             Replied
           </a>
         </div>
 
-        <?php 
+        <?php
         $row_count = mysqli_num_rows($result);
-        if ($row_count > 0): 
+        if ($row_count > 0):
         ?>
           <div class="table-container">
             <table>
@@ -557,9 +562,9 @@
                 <th>Action</th>
               </tr>
 
-              <?php 
+              <?php
               $count = 1;
-              while ($row = mysqli_fetch_assoc($result)): 
+              while ($row = mysqli_fetch_assoc($result)):
                 $has_response = !empty($row['Response']);
               ?>
                 <tr>
@@ -595,9 +600,9 @@
                     <?php endif; ?>
                   </td>
                 </tr>
-              <?php 
+              <?php
                 $count++;
-              endwhile; 
+              endwhile;
               ?>
             </table>
           </div>
@@ -616,7 +621,7 @@
   <div id="respondModal" class="modal">
     <div class="modal-content">
       <h3><i class="fa fa-reply" style="color:#3b82f6;"></i> Respond to Message</h3>
-      
+
       <div class="user-info">
         <div><span class="label">From:</span> <strong id="userNameDisplay"></strong></div>
         <div><span class="label">Email:</span> <strong id="userEmailDisplay"></strong></div>
@@ -630,7 +635,7 @@
         <input type="hidden" name="id" id="respondId">
         <label style="font-weight:600; color:#374151; font-size:14px;">Your Response:</label>
         <textarea name="response_message" id="responseMessage" placeholder="Type your response here..." required></textarea>
-        
+
         <div class="modal-actions">
           <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
           <button type="submit" name="respond" class="btn-send">
@@ -680,6 +685,7 @@
   </script>
 
 </body>
+
 </html>
 
 <?php

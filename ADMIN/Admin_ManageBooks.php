@@ -1,26 +1,25 @@
 <!-- To delete a row -->
 <?php
-$conn = mysqli_connect("localhost", "root", "", "Library_Management_System");
-
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
+// Connect to the database
+$conn = mysqli_connect("localhost", "root", "") or die("Failed to connect database");
+$sql = "CREATE DATABASE IF NOT EXISTS Library_Management_System";
+mysqli_query($conn, $sql) or die("Failed to create database");
+mysqli_select_db($conn, "Library_Management_System");
 
 // Delete Book
-if (isset($_POST['delete_id'])) {
+if (isset($_POST['delete_id'])) { // Check if the delete_id is set in the POST request
+  $id = $_POST['delete_id'];  // Get the ID of the book to be deleted
 
-  $id = $_POST['delete_id'];
+  $stmt = $conn->prepare("DELETE FROM ManageBooksAdmin WHERE id = ?");  // Prepare the SQL statement to delete the book with the specified ID
+  $stmt->bind_param("i", $id);  // Bind the ID parameter to the prepared statement
 
-  $stmt = $conn->prepare("DELETE FROM ManageBooksAdmin WHERE id = ?");
-  $stmt->bind_param("i", $id);
-
-  if ($stmt->execute()) {
-    echo "<script>alert('Book deleted successfully!');</script>";
-    echo "<script>window.location='Admin_ManageBooks.php';</script>";
-    exit();
+  if ($stmt->execute()) { // Execute the statement or run the query
+    echo "<script>alert('Book deleted successfully!');</script>"; // Show an alert message to the user
+    echo "<script>window.location='Admin_ManageBooks.php';</script>"; // Redirect the user to the same page to refresh the list of books
+    exit(); // Exit the script to prevent further execution
   }
 
-  $stmt->close();
+  $stmt->close(); // Close the statement
 }
 ?>
 
@@ -34,344 +33,9 @@ if (isset($_POST['delete_id'])) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
   <link rel="stylesheet" href="../ADMIN/Admin CSS/Admin_Data_Nav.css" />
+  <link rel="stylesheet" href="../ADMIN/Admin CSS/Admin_ManageBooks.css" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZMNWXWP3NH"> </script>
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'G-ZMNWXWP3NH');
-  </script>
-
-  <style>
-    /* General Reset */
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f0f4f8;
-    }
-
-    /* Main Content Area */
-    .Main-content {
-      flex: 1;
-      padding: 20px;
-    }
-
-    /* Manage-books Container */
-    .Manage-books {
-      display: flex;
-      gap: 40px;
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      max-width: 100%;
-      flex-wrap: wrap;
-    }
-
-    /* Upload Section */
-    .Upload-books {
-      flex: 1;
-      min-width: 300px;
-      background: #f8fafc;
-      padding: 25px 30px;
-      border-radius: 10px;
-      border: 1px solid #e5e7eb;
-    }
-
-    .Upload-books h1 {
-      color: #1f2937;
-      font-size: 24px;
-      margin-top: 0;
-      margin-bottom: 5px;
-    }
-
-    .Upload-books h3 {
-      color: #6b7280;
-      font-weight: 400;
-      font-size: 15px;
-      margin-top: 0;
-      margin-bottom: 25px;
-    }
-
-    .Upload-books form label {
-      font-weight: 600;
-      color: #374151;
-      font-size: 14px;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .Upload-books form input,
-    .Upload-books form textarea {
-      width: 100%;
-      padding: 10px 12px;
-      border: 2px solid #e5e7eb;
-      border-radius: 8px;
-      font-size: 14px;
-      transition: all 0.3s ease;
-      background: white;
-      font-family: inherit;
-    }
-
-    .Upload-books form input:focus,
-    .Upload-books form textarea:focus {
-      outline: none;
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-    }
-
-    .Upload-books form textarea {
-      min-height: 80px;
-      resize: vertical;
-    }
-
-    .Upload-books form input[type="file"] {
-      padding: 8px;
-      border: 2px dashed #d1d5db;
-      background: #f9fafb;
-      cursor: pointer;
-    }
-
-    .Upload-books form input[type="file"]:hover {
-      border-color: #3b82f6;
-      background: #eff6ff;
-    }
-
-    .Upload-books form input[type="submit"] {
-      background: #3b82f6;
-      color: white;
-      border: none;
-      padding: 12px 30px;
-      font-size: 16px;
-      font-weight: 600;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      width: auto;
-      margin-top: 5px;
-    }
-
-    .Upload-books form input[type="submit"]:hover {
-      background: #2563eb;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
-    }
-
-    /* Existing Books Section */
-    .Existing-books {
-      flex: 2;
-      min-width: 400px;
-    }
-
-    .Existing-books h3 {
-      color: #1f2937;
-      margin-top: 0;
-      margin-bottom: 20px;
-      font-size: 18px;
-    }
-
-    /* Table Styles */
-    .Existing-books table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    }
-
-    .Existing-books table th {
-      background: #1e293b;
-      color: white;
-      padding: 14px 12px;
-      text-align: center;
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .Existing-books table td {
-      padding: 12px;
-      text-align: center;
-      border-bottom: 1px solid #f1f5f9;
-      font-size: 14px;
-      color: #334155;
-    }
-
-    .Existing-books table tr {
-      transition: all 0.3s ease;
-    }
-
-    .Existing-books table tr:hover {
-      background: #f8fafc;
-      transform: scale(1.002);
-    }
-
-    .Existing-books table tr:last-child td {
-      border-bottom: none;
-    }
-
-    /* Description toggle */
-    .short-desc {
-      color: #475569;
-    }
-
-    .full-desc {
-      color: #1e293b;
-    }
-
-    .Existing-books table a {
-      color: #3b82f6;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 500;
-      margin-left: 5px;
-      cursor: pointer;
-    }
-
-    .Existing-books table a:hover {
-      color: #2563eb;
-      text-decoration: underline;
-    }
-
-    /* Book Image */
-    .Existing-books table img {
-      border-radius: 6px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      max-width: 80px;
-      height: auto;
-    }
-
-    .Existing-books table img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Delete Button */
-    .Existing-books table form input[type="submit"] {
-      background: #ef4444;
-      color: white;
-      border: none;
-      padding: 6px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-
-    .Existing-books table form input[type="submit"]:hover {
-      background: #dc2626;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
-    }
-
-    /* Message Alert */
-    #message {
-      margin: 15px 20px;
-      padding: 15px 20px;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: 500;
-      animation: slideDown 0.3s ease;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    }
-
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-15px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Scrollable table container */
-    .table-container {
-      overflow-x: auto;
-      border-radius: 10px;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .Manage-books {
-        flex-direction: column;
-        padding: 15px;
-      }
-
-      .Upload-books {
-        min-width: auto;
-        padding: 20px;
-      }
-
-      .Existing-books {
-        min-width: auto;
-      }
-
-      .Existing-books table {
-        font-size: 12px;
-      }
-
-      .Existing-books table th,
-      .Existing-books table td {
-        padding: 8px 6px;
-      }
-
-      .Existing-books table img {
-        max-width: 50px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .Upload-books form input[type="submit"] {
-        width: 100%;
-      }
-
-      .Existing-books table {
-        font-size: 11px;
-      }
-
-      .Existing-books table th,
-      .Existing-books table td {
-        padding: 6px 4px;
-      }
-    }
-
-    /* Scrollbar Styling */
-    .table-container::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    .table-container::-webkit-scrollbar-track {
-      background: #f1f5f9;
-      border-radius: 4px;
-    }
-
-    .table-container::-webkit-scrollbar-thumb {
-      background: #94a3b8;
-      border-radius: 4px;
-    }
-
-    .table-container::-webkit-scrollbar-thumb:hover {
-      background: #64748b;
-    }
-  </style>
-
+  <!-- Script to hide the success message after 5 seconds -->
   <script>
     setTimeout(function() {
 
@@ -380,9 +44,9 @@ if (isset($_POST['delete_id'])) {
       if (msg) {
         msg.style.display = "none";
       }
-
     }, 5000);
   </script>
+
 </head>
 
 <body>
@@ -402,8 +66,8 @@ if (isset($_POST['delete_id'])) {
             border-left:4px solid #10b981;
             box-shadow:0 2px 10px rgba(0,0,0,0.05);
         '>
-            ✅ Book added successfully!
-        </div>";
+            ✅ Book added successfully!   
+        </div>";   // Show success message when a book is added successfully
     }
 
     if ($_GET['success'] == 0) {
@@ -421,12 +85,12 @@ if (isset($_POST['delete_id'])) {
             box-shadow:0 2px 10px rgba(0,0,0,0.05);
         '>
             ❌ Failed to add book. Please try again.
-        </div>";
+        </div>";  // Show error message when a book fails to be added
     }
   }
   ?>
 
-
+  <!-- Logo and Name -->
   <section class="Main-name">
     <img
       src="../Assets/Images/logo.png"
@@ -435,6 +99,7 @@ if (isset($_POST['delete_id'])) {
     <span>Library Management System</span>
   </section>
 
+  <!-- Left side navigation -->
   <div class="container">
     <nav>
       <a href="AdministratorArea.html" id="Dashboard">Dashboard</a>
@@ -446,12 +111,14 @@ if (isset($_POST['delete_id'])) {
       <a href="Admin_UserAccount.php" id="Feedbacks">User's <br> Accounts</a>
     </nav>
 
+    <!-- Main Content -->
     <div class="Main-content">
       <div class="Manage-books" id="Manage_Books">
         <div class="Upload-books">
           <h1>📚 Manage Books</h1>
           <h3>Upload new books to the library collection.</h3>
 
+          <!-- Form for adding new books to the library collection -->
           <form action="Admin PHP/ManageBooks.php" method="post" enctype="multipart/form-data">
             <label for="bookTitle">Book Title:</label>
             <input type="text" name="bookTitle" id="bookTitle" required placeholder="Enter book title" />
@@ -460,7 +127,7 @@ if (isset($_POST['delete_id'])) {
             <input type="text" name="author" id="author" required placeholder="Enter author name" />
 
             <label for="isbn">ISBN:</label>
-            <input type="text" name="isbn" id="isbn" required placeholder="Enter ISBN number" /> <br/><br/>
+            <input type="text" name="isbn" id="isbn" required placeholder="Enter ISBN number" /> <br /><br />
 
             <input type="submit" name="submit" value="➕ Add Book" />
           </form>
@@ -469,12 +136,19 @@ if (isset($_POST['delete_id'])) {
         <div class="Existing-books">
           <h3>📖 Manage Existing Books</h3>
 
+          <!-- Table to display existing books by retrieving from the database -->
           <div class="table-container">
             <?php
-            $conn = mysqli_connect("localhost", "root", "", "Library_Management_System");
+            // Connect to the database
+            $conn = mysqli_connect("localhost", "root", "") or die("Failed to connect database");
+            $sql = "CREATE DATABASE IF NOT EXISTS Library_Management_System";
+            mysqli_query($conn, $sql) or die("Failed to create database");
+            mysqli_select_db($conn, "Library_Management_System");
 
+            // Retrieve existing books from the database
             $result = mysqli_query($conn, "SELECT * FROM ManageBooksAdmin");
 
+            // Table format to display books
             echo "<table>";
             echo "<tr>
                   <th>#</th>
@@ -485,14 +159,14 @@ if (isset($_POST['delete_id'])) {
                   </tr>";
             $count = 1;
 
-            while ($row = mysqli_fetch_assoc($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {  // Loop through each book record and display it in the table
 
               echo "<tr>";
 
-              echo "<td><strong>{$count}</strong></td>";
-              echo "<td><strong>{$row['BookTitle']}</strong></td>";
-              echo "<td>{$row['Author']}</td>";
-              echo "<td>{$row['ISBN']}</td>";
+              echo "<td><strong>{$count}</strong></td>";  // Display the count number for each book
+              echo "<td><strong>{$row['BookTitle']}</strong></td>"; // Display the book title
+              echo "<td>{$row['Author']}</td>"; // Display the author name
+              echo "<td>{$row['ISBN']}</td>"; // Display the ISBN number
               echo "</td>";
 
               // Delete Button
@@ -505,7 +179,7 @@ if (isset($_POST['delete_id'])) {
 
               echo "</tr>";
 
-              $count++;
+              $count++; // Increment the count for the next book record
             }
             echo "</table>";
 
@@ -517,4 +191,5 @@ if (isset($_POST['delete_id'])) {
     </div>
   </div>
 </body>
+
 </html>

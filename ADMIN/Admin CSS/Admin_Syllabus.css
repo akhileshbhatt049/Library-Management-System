@@ -1,0 +1,307 @@
+ /* General Reset */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4f8;
+    }
+
+    /* Main Content Area */
+    .Main-content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    /* Syllabus Container */
+    .Syllabus {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      max-width: 100%;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    /* Upload Section */
+    .Upload-syllabus {
+      flex: 1;
+      min-width: 300px;
+      background: #f8fafc;
+      padding: 25px 30px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .Upload-syllabus h1 {
+      color: #1f2937;
+      font-size: 24px;
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+
+    .Upload-syllabus h3 {
+      color: #6b7280;
+      font-weight: 400;
+      font-size: 15px;
+      margin-top: 0;
+      margin-bottom: 25px;
+    }
+
+    .Upload-syllabus form label {
+      font-weight: 600;
+      color: #374151;
+      font-size: 14px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .Upload-syllabus form input,
+    .Upload-syllabus form select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      background: white;
+      font-family: inherit;
+      margin-bottom: 15px;
+    }
+
+    .Upload-syllabus form input:focus,
+    .Upload-syllabus form select:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .Upload-syllabus form input[type="file"] {
+      padding: 8px;
+      border: 2px dashed #d1d5db;
+      background: #f9fafb;
+      cursor: pointer;
+    }
+
+    .Upload-syllabus form input[type="file"]:hover {
+      border-color: #3b82f6;
+      background: #eff6ff;
+    }
+
+    .Upload-syllabus form input[type="submit"] {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: auto;
+      margin-top: 5px;
+    }
+
+    .Upload-syllabus form input[type="submit"]:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    }
+
+    /* Existing Syllabus Section */
+    .Existing-syllabus {
+      flex: 2;
+      min-width: 400px;
+    }
+
+    .Existing-syllabus h3 {
+      color: #1f2937;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    /* Table Styles */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 10px;
+    }
+
+    .Existing-syllabus table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .Existing-syllabus table th {
+      background: #1e293b;
+      color: white;
+      padding: 14px 12px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .Existing-syllabus table td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 14px;
+      color: #334155;
+    }
+
+    .Existing-syllabus table tr {
+      transition: all 0.3s ease;
+    }
+
+    .Existing-syllabus table tr:hover {
+      background: #f8fafc;
+      transform: scale(1.002);
+    }
+
+    .Existing-syllabus table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* View PDF Link */
+    .Existing-syllabus table a {
+      display: inline-block;
+      background: #3b82f6;
+      color: white;
+      padding: 6px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .Existing-syllabus table a:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+
+    .Existing-syllabus table a i {
+      margin-right: 5px;
+    }
+
+    /* No PDF text */
+    .no-pdf {
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    /* Course name styling */
+    .course-name {
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    /* Semester badge */
+    .semester-badge {
+      display: inline-block;
+      background: #f1f5f9;
+      color: #475569;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* ID styling */
+    .id-number {
+      font-weight: 700;
+      color: #3b82f6;
+    }
+
+    /* Delete Button */
+    .btn-delete {
+      background: #ef4444;
+      color: white;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-delete:hover {
+      background: #dc2626;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+    }
+
+    .btn-delete i {
+      margin-right: 5px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .Syllabus {
+        flex-direction: column;
+        padding: 15px;
+      }
+
+      .Upload-syllabus {
+        min-width: auto;
+        padding: 20px;
+      }
+
+      .Existing-syllabus {
+        min-width: auto;
+      }
+
+      .Existing-syllabus table {
+        font-size: 12px;
+      }
+
+      .Existing-syllabus table th,
+      .Existing-syllabus table td {
+        padding: 8px 6px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .Upload-syllabus form input[type="submit"] {
+        width: 100%;
+      }
+
+      .Existing-syllabus table {
+        font-size: 11px;
+      }
+
+      .Existing-syllabus table th,
+      .Existing-syllabus table td {
+        padding: 6px 4px;
+      }
+    }
+
+    /* Scrollbar Styling */
+    .table-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .table-container::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+
+    .table-container::-webkit-scrollbar-thumb {
+      background: #94a3b8;
+      border-radius: 4px;
+    }
+
+    .table-container::-webkit-scrollbar-thumb:hover {
+      background: #64748b;
+    }
