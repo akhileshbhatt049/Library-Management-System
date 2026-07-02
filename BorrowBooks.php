@@ -127,9 +127,9 @@ $books = mysqli_query($conn, "SELECT * FROM ManageBooksAdmin");
             </form>
         </div>
     </div>
-    <script src="Assets/JS/Borrow_Books.js"></script>
+    <script src="Assets/JS/Borrow_Books.js"></script> <!-- JS file to handle modal open and close functionality -->
 </body>
 
 </html>
 
-<?php mysqli_close($conn); ?>
+<?php mysqli_close($conn); ?> <!-- Close the database connection -->
