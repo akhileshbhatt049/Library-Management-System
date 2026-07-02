@@ -1,24 +1,23 @@
-<?php 
-$conn = mysqli_connect("localhost","root","");
+<?php
+$conn = mysqli_connect("localhost", "root", "");
 mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS Library_Management_System");
 mysqli_select_db($conn, "Library_Management_System");
 
-// ✅ FIXED: Changed table name to match INSERT
 mysqli_query($conn, " CREATE TABLE IF NOT EXISTS ADMIN_SYLLABUS(
-    ID INT PRIMARY KEY AUTO_INCREMENT,
+    ID INT AUTO_INCREMENT PRIMARY KEY,
     Course_Name TEXT,
+    Semester TEXT,
     Course_PDF TEXT 
 )");
 
-if(isset($_POST['Upload_Syllabus'])) {
+if (isset($_POST['Upload_Syllabus'])) {
     $courseName = $_POST['courseName'];
+    $Semester = $_POST['Semester'];
 
     $syllabusFile = "";
 
-    if($_FILES['syllabusFile']['name'] != "")
-    {
-        if(!is_dir("Syllabus_PDF"))
-        {
+    if ($_FILES['syllabusFile']['name'] != "") {
+        if (!is_dir("Syllabus_PDF")) {
             mkdir("Syllabus_PDF");
         }
 
@@ -29,20 +28,14 @@ if(isset($_POST['Upload_Syllabus'])) {
             $syllabusFile
         );
     }
-
-    // ✅ FIXED: Changed table name to match CREATE TABLE
     $sql = "INSERT INTO ADMIN_SYLLABUS
-            (Course_Name, Course_PDF)
+            (Course_Name, Semester, Course_PDF)
             VALUES
-            ('$courseName', '$syllabusFile')";
+            ('$courseName', '$Semester', '$syllabusFile')";
 
-    if(mysqli_query($conn, $sql))
-    {
+    if (mysqli_query($conn, $sql)) {
         echo "$courseName added successfully.";
-    }
-    else
-    {
+    } else {
         echo "Error: " . mysqli_error($conn);
     }
 }
-?>

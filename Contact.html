@@ -1,61 +1,67 @@
 <!DOCTYPE html>
-<html>  
+<html>
     <head>
         <title>Contact</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="Assets/CSS/Navigation Bar.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css"
+            href="Assets/CSS/Navigation Bar.css">
         <link rel="stylesheet" type="text/css" href="Assets/CSS/Contact.css">
-         <!-- Google tag (gtag.js) -->
-        <script async
-            src="https://www.googletagmanager.com/gtag/js?id=G-ZMNWXWP3NH">
-        </script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
 
-            gtag('config', 'G-ZMNWXWP3NH');
-        </script>
     </head>
     <body>
+        <!-- Navigation bar -->
         <header class="header">
             <div class="Logo-Name">
                 <img src="Assets/Images/logo.png" alt="Library Logo">
                 <span>Library Management System</span>
             </div>
-
             <nav class="nav">
                 <a href="Index.html" class="nav-link" id="Size">Home</a>
-                <a href="BrowseBooks.html" class="nav-link" id="Size">Books</a>
-                <a href="BorrowBooks.html" class="nav-link " id="Size">Borrow Books</a>
-                <a href="Syllabus.html" class="nav-link" id="Size">Syllabus</a>
-                <a href="RequestBook.html" class="nav-link" id="Size">Request Books</a>
-                <a href="Contact.html" class="nav-link active" id="Size">Contacts</a>
+                <a href="BorrowBooks.php" class="nav-link " id="Size">Borrow
+                    Books</a>
+                <a href="Syllabus.php" class="nav-link" id="Size">Syllabus</a>
+                <a href="RequestBook.html" class="nav-link" id="Size">Request
+                    Books</a>
+                <a href="Contact.html" class="nav-link active"
+                    id="Size">Contacts</a>
                 <a href="Account.html" class="nav-link" id="Size">Account</a>
+                <a href="ADMIN/AdministratorArea.html" class="nav-link"
+                    id="Size">Admin</a>
             </nav>
         </header>
 
+        <!-- Body Part -->
         <h1 class="Page-name">Contact Us</h1>
         <hr class="divider-light" />
 
-        <p id="Written-text">Feel free to reach out to us with any questions or feedback.</p>
+        <p id="Written-text">
+            Feel free to reach out to us with any questions or
+            feedback.
+        </p>
 
+        <!-- Form and Information Container -->
         <div class="contact-container">
             <section class="message-area">
                 <p><i class="fa fa-paper-plane"></i> Send us a message</p>
+
+                <!-- Left-Side Form to send a message to the Admin -->
                 <form id="contactForm" action="PHP/Contact.php" method="post">
                     <div class="form-group">
                         <label><i class="fa fa-user"></i> Full Name:</label>
-                        <input type="text" id="name" name="Name" placeholder="Enter your full name">
+                        <input type="text" id="name" name="Name"
+                            placeholder="Enter your full name">
                     </div>
                     <div class="form-group">
                         <label><i class="fa fa-envelope"></i> Email:</label>
-                        <input type="email" id="email" name="Email" placeholder="Enter your email">
+                        <input type="email" id="email" name="Email"
+                            placeholder="Enter your email">
                     </div>
                     <div class="form-group">
                         <label><i class="fa fa-comment"></i> Message:</label>
-                        <textarea id="message" name="Message" placeholder="Write your message here..."></textarea>
+                        <textarea id="message" name="Message"
+                            placeholder="Write your message here..."></textarea>
                     </div>
 
                     <button type="submit" name="submit" class="submit-btn">
@@ -64,6 +70,7 @@
                 </form>
             </section>
 
+            <!-- Right-Side Information Area -->
             <section class="information-area">
                 <p><i class="fa fa-info-circle"></i> Contact Information</p>
                 <div class="info-item">
@@ -76,13 +83,11 @@
                 </div>
                 <div class="info-item">
                     <i class="fa fa-map-marker"></i>
-                    <p>shantinagar, Kathmandu</p>
+                    <p>Koteshwor, Kathmandu</p>
                 </div>
-                <img src="Assets/Images/Contact book.png" alt="Contact Image" class="contact-image">
+                <img src="Assets/Images/Contact book.png" alt="Contact Image"
+                    class="contact-image">
             </section>
         </div>
-
-        <!-- Simple JavaScript for form validation -->
-        <!-- <script src="Assets/JS/Contact.js"></script> -->
     </body>
 </html>
