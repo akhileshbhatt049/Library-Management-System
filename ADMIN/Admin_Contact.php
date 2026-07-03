@@ -27,10 +27,9 @@
     $result = mysqli_query($conn, "SELECT * FROM Contacts");  // Select all messages from the Contacts table
   } elseif ($filter == 'Replied') { // If the filter is 'Replied', select only messages with status 'Replied'
     $result = mysqli_query($conn, "SELECT * FROM Contacts WHERE Status = 'Replied'");   // Select messages with status 'Replied' from the Contacts table
-  } 
-  elseif ($filter == 'Pending') { // If the filter is 'Pending', select only messages with status 'Pending'
+  } elseif ($filter == 'Pending') { // If the filter is 'Pending', select only messages with status 'Pending'
     $result = mysqli_query($conn, "SELECT * FROM Contacts WHERE Status = 'Pending'"); // Select messages with status 'Pending' from the Contacts table
-    }else {
+  } else {
     $result = mysqli_query($conn, "SELECT * FROM Contacts WHERE Status IS NULL OR Status = ''");  // Select messages with no status from the Contacts table
   }
   ?>
@@ -75,7 +74,7 @@
           <p>View and respond to messages from library users.</p>
 
           <!-- Display Message -->
-          <?php if (isset($message)): ?>    <!-- If there is a message to display (success or error) -->
+          <?php if (isset($message)): ?> <!-- If there is a message to display (success or error) -->
             <div class="alert alert-<?php echo $message_type; ?>"> <!-- Determine message style -->
               <?php echo $message; ?> <!-- Actual message display -->
             </div>
@@ -120,9 +119,9 @@
                     <td><?php echo htmlspecialchars($row['Email']); ?></td> <!-- display email -->
                     <td><span class="message-text"><?php echo htmlspecialchars($row['Message']); ?></span></td> <!-- display message -->
                     <td>
-                      <?php if ($has_response): ?>  <!-- check if admin response to feedback -->
+                      <?php if ($has_response): ?> <!-- check if admin response to feedback -->
                         <span class="response-text">
-                          <i class="fa fa-check-circle" style="color:#10b981;"></i> 
+                          <i class="fa fa-check-circle" style="color:#10b981;"></i>
                           <?php echo htmlspecialchars($row['Response']); ?> <!-- Display the response -->
                         </span>
                       <?php else: ?>
