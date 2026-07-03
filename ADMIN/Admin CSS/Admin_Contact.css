@@ -13,8 +13,8 @@ body {
   padding: 20px;
 }
 
-/* Books-Request Container */
-.Books-Request {
+/* Contact-us Container */
+.Contact-us {
   background: white;
   padding: 30px;
   border-radius: 12px;
@@ -22,14 +22,14 @@ body {
   max-width: 100%;
 }
 
-.Books-Request h1 {
+.Contact-us h1 {
   color: #1f2937;
   font-size: 24px;
   margin-top: 0;
   margin-bottom: 5px;
 }
 
-.Books-Request p {
+.Contact-us p {
   color: #6b7280;
   margin-top: 0;
   margin-bottom: 25px;
@@ -60,6 +60,7 @@ body {
     opacity: 0;
     transform: translateY(-15px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -96,6 +97,18 @@ body {
   border-color: #3b82f6;
 }
 
+.filter-tab .count {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.filter-tab.active .count {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 /* Table Styles */
 .table-container {
   overflow-x: auto;
@@ -123,7 +136,7 @@ table th {
 }
 
 table td {
-  padding: 11px;
+  padding: 12px;
   text-align: center;
   border-bottom: 1px solid #f1f5f9;
   font-size: 14px;
@@ -143,62 +156,57 @@ table tr:last-child td {
   border-bottom: none;
 }
 
-/* Status Text */
-.status-approved {
+/* S.No. styling */
+.sno {
+  font-weight: 700;
+  color: #3b82f6;
+}
+
+/* Message styling */
+.message-text {
+  max-width: 250px;
+  display: inline-block;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+/* Response styling */
+.response-text {
+  max-width: 250px;
+  display: inline-block;
+  text-align: left;
+  word-wrap: break-word;
   color: #065f46;
+}
+
+.response-text i {
+  margin-right: 5px;
+}
+
+/* No response yet */
+.no-response {
+  color: #94a3b8;
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* Status Badge */
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
   font-weight: 600;
 }
 
-.status-rejected {
-  color: red;
-  font-weight: bold;
-  text-decoration: underline dotted;
+.status-replied {
+  background: #d1fae5;
+  color: #065f46;
 }
 
 .status-pending {
+  background: #fef3c7;
   color: #92400e;
-  font-weight: 600;
-}
-
-/* Tooltip for rejected */
-.tooltip-text {
-  display: none;
-  position: absolute;
-  background: #1f2937;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 13px;
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  z-index: 9999;
-  min-width: 150px;
-  max-width: 300px;
-  white-space: normal;
-  word-wrap: break-word;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.tooltip-text::before {
-  content: "";
-  position: absolute;
-  bottom: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid #1f2937;
-}
-
-.status-rejected-wrapper {
-  position: absolute;
-  display: inline-block;
-}
-
-.status-rejected-wrapper:hover .tooltip-text {
-  display: block;
 }
 
 /* Buttons */
@@ -213,26 +221,19 @@ table tr:last-child td {
   margin: 2px 4px;
 }
 
-.btn-approve {
-  background: #10b981;
+.btn-respond {
+  background: #3b82f6;
   color: white;
 }
 
-.btn-approve:hover {
-  background: #059669;
+.btn-respond:hover {
+  background: #2563eb;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
 
-.btn-reject {
-  background: #ef4444;
-  color: white;
-}
-
-.btn-reject:hover {
-  background: #dc2626;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+.btn-respond i {
+  margin-right: 5px;
 }
 
 .btn-done {
@@ -240,8 +241,13 @@ table tr:last-child td {
   font-size: 13px;
 }
 
+.btn-done i {
+  margin-right: 5px;
+  color: #10b981;
+}
+
 .action-column {
-  min-width: 150px;
+  min-width: 120px;
 }
 
 /* Modal */
@@ -266,7 +272,7 @@ table tr:last-child td {
   background: white;
   padding: 30px;
   border-radius: 12px;
-  max-width: 400px;
+  max-width: 500px;
   width: 90%;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   animation: modalSlideIn 0.3s ease;
@@ -277,6 +283,7 @@ table tr:last-child td {
     transform: translateY(-30px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -288,20 +295,39 @@ table tr:last-child td {
   color: #1f2937;
 }
 
+.modal-content .user-info {
+  background: #f8fafc;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin: 10px 0 15px 0;
+  border-left: 4px solid #3b82f6;
+}
+
+.modal-content .user-info strong {
+  color: #1f2937;
+}
+
+.modal-content .user-info .label {
+  color: #6b7280;
+  font-size: 13px;
+}
+
 .modal-content textarea {
   width: 100%;
   padding: 10px;
   border: 2px solid #e5e7eb;
   border-radius: 6px;
   margin: 10px 0;
-  min-height: 80px;
+  min-height: 100px;
   resize: vertical;
   font-family: inherit;
+  font-size: 14px;
 }
 
 .modal-content textarea:focus {
   outline: none;
   border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .modal-actions {
@@ -320,13 +346,13 @@ table tr:last-child td {
   transition: all 0.3s ease;
 }
 
-.modal-actions .btn-confirm {
-  background: #ef4444;
+.modal-actions .btn-send {
+  background: #3b82f6;
   color: white;
 }
 
-.modal-actions .btn-confirm:hover {
-  background: #dc2626;
+.modal-actions .btn-send:hover {
+  background: #2563eb;
 }
 
 .modal-actions .btn-cancel {
@@ -357,7 +383,7 @@ table tr:last-child td {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .Books-Request {
+  .Contact-us {
     padding: 15px;
   }
 
@@ -380,7 +406,12 @@ table tr:last-child td {
   }
 
   .action-column {
-    min-width: 120px;
+    min-width: 100px;
+  }
+
+  .message-text,
+  .response-text {
+    max-width: 150px;
   }
 }
 
@@ -397,6 +428,10 @@ table tr:last-child td {
   .btn {
     padding: 4px 10px;
     font-size: 11px;
+  }
+
+  .modal-content {
+    padding: 20px;
   }
 }
 
@@ -417,17 +452,4 @@ table tr:last-child td {
 
 .table-container::-webkit-scrollbar-thumb:hover {
   background: #64748b;
-}
-
-/* S.No. styling */
-.sno {
-  font-weight: 700;
-  color: #3b82f6;
-}
-
-/* Reason text styling */
-.reason-text {
-  max-width: 2000px;
-  display: inline-block;
-  text-align: left;
 }

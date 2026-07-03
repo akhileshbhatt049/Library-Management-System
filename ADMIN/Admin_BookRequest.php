@@ -141,7 +141,7 @@ if ($filter == 'All') { // If the filter is set to 'All', retrieve all book requ
                     <?php else: ?>
                       <span class="btn-done">Done</span>
                     <?php endif; ?>
-                  </td> 
+                  </td>
                 </tr>
               <?php
                 $count++;
