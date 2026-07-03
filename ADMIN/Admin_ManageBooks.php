@@ -35,17 +35,37 @@ if (isset($_POST['delete_id'])) { // Check if the delete_id is set in the POST r
   <link rel="stylesheet" href="../ADMIN/Admin CSS/Admin_Data_Nav.css" />
   <link rel="stylesheet" href="../ADMIN/Admin CSS/Admin_ManageBooks.css" />
 
-  <!-- Script to hide the success message after 5 seconds -->
-  <script>
-    setTimeout(function() {
+  <style>
+    /* Style for the success message */
+    .success_message {
+      background: #d1fae5;
+      color: #065f46;
+      padding: 15px 20px;
+      margin: 15px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      text-align: center;
+      font-weight: 500;
+      border-left: 4px solid #10b981;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
 
-      var msg = document.getElementById("message");
+    /* Style for the error message */
+    .error_message {
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 15px 20px;
+      margin: 15px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      text-align: center;
+      font-weight: 500;
+      border-left: 4px solid #ef4444;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+  </style>
 
-      if (msg) {
-        msg.style.display = "none";
-      }
-    }, 5000);
-  </script>
+  <script src="Admin JS/Admin_ManageBooks_MessageHide.js"></script>
 
 </head>
 
@@ -54,36 +74,14 @@ if (isset($_POST['delete_id'])) { // Check if the delete_id is set in the POST r
   if (isset($_GET['success'])) {
     if ($_GET['success'] == 1) {
       echo "
-        <div id='message' style='
-            background:#d1fae5;
-            color:#065f46;
-            padding:15px 20px;
-            margin:15px 20px;
-            border-radius:10px;
-            font-size:16px;
-            text-align:center;
-            font-weight:500;
-            border-left:4px solid #10b981;
-            box-shadow:0 2px 10px rgba(0,0,0,0.05);
-        '>
+        <div id='message' class='success_message'>
             ✅ Book added successfully!   
         </div>";   // Show success message when a book is added successfully
     }
 
     if ($_GET['success'] == 0) {
       echo "
-        <div id='message' style='
-            background:#fee2e2;
-            color:#991b1b;
-            padding:15px 20px;
-            margin:15px 20px;
-            border-radius:10px;
-            font-size:16px;
-            text-align:center;
-            font-weight:500;
-            border-left:4px solid #ef4444;
-            box-shadow:0 2px 10px rgba(0,0,0,0.05);
-        '>
+        <div id='message' class='error_message' >
             ❌ Failed to add book. Please try again.
         </div>";  // Show error message when a book fails to be added
     }
@@ -173,7 +171,7 @@ if (isset($_POST['delete_id'])) { // Check if the delete_id is set in the POST r
               echo "<td>
               <form method='POST' onsubmit=\"return confirm('Are you sure you want to delete this book?');\">
                   <input type='hidden' name='delete_id' value='{$row['id']}'>
-                  <input type='submit' value='🗑 Delete' style='background:#ef4444;color:white;border:none;padding:6px 16px;cursor:pointer;border-radius:6px;font-size:13px;font-weight:500;transition:all 0.3s ease;'>
+                  <input type='submit' value='🗑 Delete' class='btn btn-danger'>
               </form>
             </td>";
 

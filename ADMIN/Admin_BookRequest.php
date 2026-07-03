@@ -27,7 +27,7 @@ $filter = isset($_GET['filter']) ? $_GET['filter'] : 'Pending'; // Get the filte
 if ($filter == 'All') { // If the filter is set to 'All', retrieve all book requests from the database
   $result = mysqli_query($conn, "SELECT * FROM Request_Book ORDER BY id DESC"); // Retrieve all book requests from the database and order them by ID in descending order
 } else {
-  $result = mysqli_query($conn, "SELECT * FROM Request_Book WHERE Status='$filter' ORDER BY id DESC"); // Retrieve book requests from the database based on the selected filter and order them by ID in descending order
+  $result = mysqli_query($conn, "SELECT * FROM Request_Book WHERE Status='$filter'"); // Retrieve book requests from the database based on the selected filter and order them by ID in descending order
 }
 ?>
 
@@ -74,15 +74,15 @@ if ($filter == 'All') { // If the filter is set to 'All', retrieve all book requ
         <p>Review and respond to book requests from library users.</p>
 
         <!-- Display Message -->
-        <?php if (isset($message)): ?>  <!-- Check if there is a message to display -->
-          <div class="alert alert-<?php echo $message_type; ?>">  <!-- Display the message with appropriate styling based on the message type -->
+        <?php if (isset($message)): ?> <!-- Check if there is a message to display -->
+          <div class="alert alert-<?php echo $message_type; ?>"> <!-- Display the message with appropriate styling based on the message type -->
             <?php echo $message; ?> <!-- Output the message content -->
           </div>
         <?php endif; ?>
 
         <!-- Filter Tabs -->
-        <div class="filter-tabs"> 
-          <a href="?filter=All" class="filter-tab <?php if ($filter == 'All') echo 'active'; ?>">All</a>  <!-- Link to filter all book requests, and add 'active' class if the current filter is 'All' -->
+        <div class="filter-tabs">
+          <a href="?filter=All" class="filter-tab <?php if ($filter == 'All') echo 'active'; ?>">All</a> <!-- Link to filter all book requests, and add 'active' class if the current filter is 'All' -->
           <a href="?filter=Pending" class="filter-tab <?php if ($filter == 'Pending') echo 'active'; ?>">Pending</a> <!--filters pending requests -->
           <a href="?filter=Approved" class="filter-tab <?php if ($filter == 'Approved') echo 'active'; ?>">Approved</a> <!--filters approved requests -->
           <a href="?filter=Rejected" class="filter-tab <?php if ($filter == 'Rejected') echo 'active'; ?>">Rejected</a> <!--filters rejected requests -->
@@ -90,8 +90,8 @@ if ($filter == 'All') { // If the filter is set to 'All', retrieve all book requ
 
         <?php if (mysqli_num_rows($result) > 0): ?> <!-- Check if there are any book requests to display -->
           <div class="table-container">
-            <table> 
-              <tr> 
+            <table>
+              <tr>
                 <th>#</th>
                 <th>Student Name</th>
                 <th>Email</th>
@@ -114,8 +114,8 @@ if ($filter == 'All') { // If the filter is set to 'All', retrieve all book requ
                   <td><?php echo htmlspecialchars($row['Author']); ?></td> <!-- Display the author's name -->
                   <td><span class="reason-text"><?php echo htmlspecialchars($row['Reason']); ?></span></td> <!-- Display the reason for the request -->
                   <td>
-                    <?php if ($row['Status'] == 'Pending'): ?>  <!-- Check if the request status is 'Pending' -->
-                      <span class="status-pending">Pending</span> 
+                    <?php if ($row['Status'] == 'Pending'): ?> <!-- Check if the request status is 'Pending' -->
+                      <span class="status-pending">Pending</span>
                     <?php elseif ($row['Status'] == 'Approved'): ?> <!-- Check if the request status is 'Approved' -->
                       <span class="status-approved">Approved</span>
                     <?php elseif ($row['Status'] == 'Rejected'): ?> <!-- Check if the request status is 'Rejected' -->
@@ -128,20 +128,20 @@ if ($filter == 'All') { // If the filter is set to 'All', retrieve all book requ
                     <?php endif; ?>
                   </td>
                   <td class="action-column">
-                    <?php if ($row['Status'] == 'Pending'): ?>  <!-- Check if the request status is 'Pending' to show action buttons -->
-                      
+                    <?php if ($row['Status'] == 'Pending'): ?> <!-- Check if the request status is 'Pending' to show action buttons -->
+
                       <!-- Approve Form -->
                       <form method="POST" style="display:inline;">
-                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">   <!-- Hidden input to store the request ID for approval -->
-                        <button type="submit" name="approve" class="btn btn-approve">Approve</button>   <!-- Button to approve the request -->
+                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>"> <!-- Hidden input to store the request ID for approval -->
+                        <button type="submit" name="approve" class="btn btn-approve">Approve</button> <!-- Button to approve the request -->
                       </form>
 
                       <!-- Reject Button -->
-                      <button type="button" class="btn btn-reject" onclick="openModal(<?php echo $row['id']; ?>, '<?php echo htmlspecialchars($row['Name']); ?>')">Reject</button>  <!-- Button to open the rejection modal and pass the request -->
+                      <button type="button" class="btn btn-reject" onclick="openModal(<?php echo $row['id']; ?>, '<?php echo htmlspecialchars($row['Name']); ?>')">Reject</button> <!-- Button to open the rejection modal and pass the request -->
                     <?php else: ?>
-                      <span class="btn-done">✓ Done</span>
+                      <span class="btn-done">Done</span>
                     <?php endif; ?>
-                  </td>
+                  </td> 
                 </tr>
               <?php
                 $count++;
@@ -178,40 +178,7 @@ if ($filter == 'All') { // If the filter is set to 'All', retrieve all book requ
     </div>
   </div>
 
-  <script>
-    // Open Reject Modal
-    function openModal(id, studentName) {
-      document.getElementById('rejectId').value = id;
-      document.getElementById('studentNameDisplay').textContent = studentName;
-      document.getElementById('rejectModal').classList.add('active');
-    }
-
-    // Close Reject Modal
-    function closeModal() {
-      document.getElementById('rejectModal').classList.remove('active');
-      document.getElementById('rejectReason').value = '';
-    }
-
-    // Close modal when clicking outside
-    window.onclick = function(event) {
-      const modal = document.getElementById('rejectModal');
-      if (event.target == modal) {
-        closeModal();
-      }
-    }
-
-    // Auto-hide alerts after 5 seconds
-    setTimeout(function() {
-      const alerts = document.querySelectorAll('.alert');
-      alerts.forEach(function(alert) {
-        alert.style.transition = 'opacity 0.5s ease';
-        alert.style.opacity = '0';
-        setTimeout(function() {
-          alert.style.display = 'none';
-        }, 500);
-      });
-    }, 5000);
-  </script>
+  <script src="Admin JS/Admin_BookRequest_Model.js"></script>
 
 </body>
 

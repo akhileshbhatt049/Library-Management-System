@@ -69,15 +69,15 @@ if ($selected_course && $selected_semester) {
         <?php while ($course = mysqli_fetch_assoc($course_result)): // start loop to get all the courses from the database
           $is_active = ($selected_course == $course['Course_Name']); // Check if the current course is the selected course
         ?>
-        <!-- When clicked, reloads page with ?course=course_name in URL and convert special characters to HTML entities -->
-          <a href="?course=<?php echo urlencode($course['Course_Name']); ?>" class="course-btn <?php echo $is_active ? 'active' : ''; ?>"> 
+          <!-- When clicked, reloads page with ?course=course_name in URL and convert special characters to HTML entities -->
+          <a href="?course=<?php echo urlencode($course['Course_Name']); ?>" class="course-btn <?php echo $is_active ? 'active' : ''; ?>">
             <?php echo htmlspecialchars($course['Course_Name']); ?> <!-- Display the course name inside the button -->
           </a>
         <?php endwhile; ?> <!-- End loop -->
       </div>
 
       <!-- Semester Buttons -->
-      <?php if ($selected_course): ?>  <!-- Check if a course is selected -->
+      <?php if ($selected_course): ?> <!-- Check if a course is selected -->
         <div class="semester-section">
           <h3><i class="fa fa-graduation-cap"></i> Select Semester</h3>
           <div class="semester-buttons">
@@ -86,8 +86,8 @@ if ($selected_course && $selected_semester) {
               <?php foreach ($semesters as $semester): // Loop through each semester for the selected course
                 $is_active = ($selected_semester == $semester); // Check if the current semester is the selected semester
               ?>
-              <!-- When clicked, reloads page with ?course=course_name&semester=semester_name in URL and convert special characters to HTML entities -->
-                <a href="?course=<?php echo urlencode($selected_course); ?>&semester=<?php echo urlencode($semester); ?>" class="semester-btn <?php echo $is_active ? 'active' : ''; ?>"> 
+                <!-- When clicked, reloads page with ?course=course_name&semester=semester_name in URL and convert special characters to HTML entities -->
+                <a href="?course=<?php echo urlencode($selected_course); ?>&semester=<?php echo urlencode($semester); ?>" class="semester-btn <?php echo $is_active ? 'active' : ''; ?>">
                   <?php echo htmlspecialchars(ucfirst($semester)); ?> <!-- Display the semester name inside the button -->
                 </a>
               <?php endforeach; ?> <!-- End loop -->
@@ -101,7 +101,7 @@ if ($selected_course && $selected_semester) {
       <!-- PDF Display -->
 
       <!-- Check if a course and semester are selected and if PDF data is available -->
-      <?php if ($selected_course && $selected_semester && $pdf_data): ?> 
+      <?php if ($selected_course && $selected_semester && $pdf_data): ?>
         <div class="pdf-section">
           <h3><i class="fa fa-file-pdf-o"></i> Syllabus PDF</h3>
           <div class="pdf-card">

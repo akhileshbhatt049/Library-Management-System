@@ -6,26 +6,26 @@ mysqli_query($conn, $sql) or die("Failed to create database");
 mysqli_select_db($conn, "Library_Management_System");
 
 // Approve Request
-if (isset($_POST['approve'])) {
-  $id = $_POST['id'];
-  mysqli_query($conn, "UPDATE BorrowBook SET Status='Approved', RejectReason=NULL WHERE id=$id");
-  $message = "Request Approved!";
+if (isset($_POST['approve'])) { // Check if the approve button is clicked
+  $id = $_POST['id']; // Get the ID of the request to approve
+  mysqli_query($conn, "UPDATE BorrowBook SET Status='Approved', RejectReason=NULL WHERE id=$id"); // Update the status of the request to 'Approved' and clear any reject reason
+  $message = "Request Approved!"; // Set a message to indicate that the request has been approved
 }
 
 // Reject Request
-if (isset($_POST['reject'])) {
-  $id = $_POST['id'];
-  $reason = $_POST['reject_reason'];
-  mysqli_query($conn, "UPDATE BorrowBook SET Status='Rejected', RejectReason='$reason' WHERE id=$id");
-  $message = "Request Rejected!";
+if (isset($_POST['reject'])) {  // Check if the reject button is clicked
+  $id = $_POST['id']; // Get the ID of the request to reject
+  $reason = $_POST['reject_reason'];  // Get the reason for rejection from the form input
+  mysqli_query($conn, "UPDATE BorrowBook SET Status='Rejected', RejectReason='$reason' WHERE id=$id");  // Update the status of the request to 'Rejected' and store the reason for rejection in the database
+  $message = "Request Rejected!"; // Set a message to indicate that the request has been rejected
 }
 
 // Filter
-$filter = isset($_GET['filter']) ? $_GET['filter'] : 'Pending';
-if ($filter == 'All') {
-  $result = mysqli_query($conn, "SELECT * FROM BorrowBook ORDER BY id DESC");
+$filter = isset($_GET['filter']) ? $_GET['filter'] : 'Pending'; // Get the filter value from the URL parameter, default to 'Pending' if not set
+if ($filter == 'All') { // If the filter is set to 'All', retrieve all borrow requests from the database
+  $result = mysqli_query($conn, "SELECT * FROM BorrowBook"); // Retrieve all borrow requests from the database
 } else {
-  $result = mysqli_query($conn, "SELECT * FROM BorrowBook WHERE Status='$filter' ORDER BY id DESC");
+  $result = mysqli_query($conn, "SELECT * FROM BorrowBook WHERE Status='$filter'"); // Retrieve borrow requests from the database based on the selected filter (Pending, Approved, or Rejected)
 }
 ?>
 
@@ -62,19 +62,19 @@ if ($filter == 'All') {
       <p>Review and manage borrow requests from library users.</p>
 
       <!-- Show message -->
-      <?php if (isset($message)) { ?>
-        <div class="alert"><?php echo $message; ?></div>
+      <?php if (isset($message)) { ?> <!-- Check if a message is set (either for approval or rejection) -->
+        <div class="alert"><?php echo $message; ?></div> <!-- Display the message in an alert box -->
       <?php } ?>
 
       <!-- Filter tabs -->
       <div class="filter-tabs">
-        <a href="?filter=All" class="filter-tab <?php if ($filter == 'All') echo 'active'; ?>">All</a>
-        <a href="?filter=Pending" class="filter-tab <?php if ($filter == 'Pending') echo 'active'; ?>">Pending</a>
-        <a href="?filter=Approved" class="filter-tab <?php if ($filter == 'Approved') echo 'active'; ?>">Approved</a>
-        <a href="?filter=Rejected" class="filter-tab <?php if ($filter == 'Rejected') echo 'active'; ?>">Rejected</a>
+        <a href="?filter=All" class="filter-tab <?php if ($filter == 'All') echo 'active'; ?>">All</a> <!-- Link to show all requests, with 'active' class if the current filter is 'All' -->
+        <a href="?filter=Pending" class="filter-tab <?php if ($filter == 'Pending') echo 'active'; ?>">Pending</a> <!-- Link to show pending requests, with 'active' class if the current filter is 'Pending' -->
+        <a href="?filter=Approved" class="filter-tab <?php if ($filter == 'Approved') echo 'active'; ?>">Approved</a> <!-- Link to show approved requests, with 'active' class if the current filter is 'Approved' -->
+        <a href="?filter=Rejected" class="filter-tab <?php if ($filter == 'Rejected') echo 'active'; ?>">Rejected</a> <!-- Link to show rejected requests, with 'active' class if the current filter is 'Rejected' -->
       </div>
 
-      <?php if (mysqli_num_rows($result) > 0) { ?>
+      <?php if (mysqli_num_rows($result) > 0) { ?> <!-- Check if there are any borrow requests to display -->
         <table>
           <tr>
             <th>Student Name</th>
@@ -87,38 +87,38 @@ if ($filter == 'All') {
             <th>Action</th>
           </tr>
 
-          <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+          <?php while ($row = mysqli_fetch_assoc($result)) { ?> <!-- Loop through each borrow request and display its details in a table row -->
             <tr>
-              <td><?php echo $row['Name']; ?></td>
-              <td><?php echo $row['StudentID']; ?></td>
-              <td><?php echo $row['Email']; ?></td>
-              <td><?php echo $row['phone']; ?></td>
-              <td><?php echo $row['BookName']; ?></td>
-              <td><?php echo $row['ReturnDate']; ?></td>
+              <td><?php echo $row['Name']; ?></td> <!-- Display the student's name -->
+              <td><?php echo $row['StudentID']; ?></td> <!-- Display the student's ID -->
+              <td><?php echo $row['Email']; ?></td> <!-- Display the student's email -->
+              <td><?php echo $row['phone']; ?></td> <!-- Display the student's phone number -->
+              <td><?php echo $row['BookName']; ?></td> <!-- Display the name of the book requested -->
+              <td><?php echo $row['ReturnDate']; ?></td> <!-- Display the return date for the borrowed book -->
               <td>
-                <?php if ($row['Status'] == 'Pending') { ?>
+                <?php if ($row['Status'] == 'Pending') { ?> <!-- Check the status of the borrow request -->
                   <span class="status-pending">Pending</span>
-                <?php } elseif ($row['Status'] == 'Approved') { ?>
+                <?php } elseif ($row['Status'] == 'Approved') { ?> <!-- If the request is approved -->
                   <span class="status-approved">Approved</span>
-                <?php } elseif ($row['Status'] == 'Rejected') { ?>
+                <?php } elseif ($row['Status'] == 'Rejected') { ?> <!-- If the request is rejected -->
                   <span class="rejected-wrapper">
                     <span class="status-rejected">Rejected</span>
-                    <?php if ($row['RejectReason'] != '') { ?>
-                      <span class="tooltip-text"><?php echo $row['RejectReason']; ?></span>
+                    <?php if ($row['RejectReason'] != '') { ?> <!-- Check if there is a reason for rejection -->
+                      <span class="tooltip-text"><?php echo $row['RejectReason']; ?></span> <!-- Display the reason for rejection in a tooltip -->
                     <?php } ?>
                   </span>
                 <?php } ?>
               </td>
               <td>
-                <?php if ($row['Status'] == 'Pending') { ?>
+                <?php if ($row['Status'] == 'Pending') { ?> <!-- If the request is still pending, show the approve and reject buttons -->
                   <!-- Approve Form -->
                   <form method="POST" style="display:inline;">
-                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>"> <!-- Hidden input to pass the ID of the request to approve -->
                     <button type="submit" name="approve" class="btn btn-approve">Approve</button>
                   </form>
 
                   <!-- Reject Button -->
-                  <button onclick="openModal(<?php echo $row['id']; ?>, '<?php echo $row['Name']; ?>')" class="btn btn-reject">Reject</button>
+                  <button onclick="openModal(<?php echo $row['id']; ?>, '<?php echo $row['Name']; ?>')" class="btn btn-reject">Reject</button> <!-- Button to open the reject modal, passing the ID and name of the student -->
                 <?php } else { ?>
                   <span style="color:#999; font-size:13px;">Done</span>
                 <?php } ?>
@@ -129,7 +129,7 @@ if ($filter == 'All') {
       <?php } else { ?>
         <div class="empty">
           <h3>No requests found</h3>
-          <p>No borrow requests with status: <?php echo $filter; ?></p>
+          <p>No borrow requests with status: <?php echo $filter; ?></p> <!-- Display a message if there are no borrow requests found for the selected filter -->
         </div>
       <?php } ?>
 
@@ -152,39 +152,7 @@ if ($filter == 'All') {
     </div>
   </div>
 
-  <script>
-    // Open modal
-    function openModal(id, name) {
-      document.getElementById('rejectId').value = id;
-      document.getElementById('studentName').textContent = name;
-      document.getElementById('rejectModal').classList.add('active');
-    }
-
-    // Close modal
-    function closeModal() {
-      document.getElementById('rejectModal').classList.remove('active');
-      document.getElementById('rejectReason').value = '';
-    }
-
-    // Close modal when clicking outside
-    window.onclick = function(event) {
-      if (event.target == document.getElementById('rejectModal')) {
-        closeModal();
-      }
-    }
-
-    // Auto hide message after 5 seconds
-    setTimeout(function() {
-      var alert = document.querySelector('.alert');
-      if (alert) {
-        alert.style.opacity = '0';
-        alert.style.transition = 'opacity 0.5s';
-        setTimeout(function() {
-          alert.style.display = 'none';
-        }, 500);
-      }
-    }, 5000);
-  </script>
+  <script src="Admin JS/Admin_BorrowRequest_Model.js"></script>
 
 </body>
 

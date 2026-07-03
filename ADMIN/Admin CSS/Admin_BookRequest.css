@@ -150,9 +150,8 @@
     }
 
     .status-rejected {
-      color: #991b1b;
-      font-weight: 600;
-      cursor: help;
+      color: red;
+      font-weight: bold;
       text-decoration: underline dotted;
     }
 
@@ -165,20 +164,16 @@
     .tooltip-text {
       display: none;
       position: absolute;
-      background: #1f2937;
+      background: #333;
       color: white;
-      padding: 8px 12px;
-      border-radius: 6px;
+      padding: 5px 10px;
+      border-radius: 4px;
       font-size: 13px;
-      max-width: 300px;
-      word-wrap: break-word;
-      z-index: 100;
       margin-top: 5px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
-    .tooltip-text::before {
-      content: '';
+    .tooltip-text::before{
+      content: ' ';
       position: absolute;
       top: -6px;
       left: 10px;
@@ -188,7 +183,7 @@
     }
 
     .status-rejected-wrapper {
-      position: relative;
+      position: absolute;
       display: inline-block;
     }
 
@@ -422,7 +417,7 @@
 
     /* Reason text styling */
     .reason-text {
-      max-width: 200px;
+      max-width: 2000px;
       display: inline-block;
       text-align: left;
     }
