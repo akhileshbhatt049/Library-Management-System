@@ -29,6 +29,6 @@ if (isset($_POST['submit'])) {
         die("Error: " . mysqli_error($conn));
     }
 
-    // Display a success message
-    echo "Thank you, $Name! Your message has been sucessfully send.";
+    // Redirect the user to the same page to refresh the list of books
+    echo "<script>window.location='../Contact.html';</script>"; 
 }

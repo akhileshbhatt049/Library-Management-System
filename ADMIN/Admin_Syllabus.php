@@ -72,7 +72,7 @@
         <a href="Admin_Syllabus.php" id="Syllabus" style="background:#3b82f6; color:white; border-radius:8px;">Syllabus</a>
         <a href="Admin_BookRequest.php" id="NewBooksRequest">New <br> Books <br> Request</a>
         <a href="Admin_Contact.php" id="Feedbacks">Feedbacks</a>
-        <a href="Admin_UserAccount.php" id="Feedbacks">User's <br> Accounts</a>
+        <a href="Admin_UserAccount.php" id="UserAccounts">User's <br> Accounts</a>
       </nav>
 
       <!-- Main content area for managing syllabus -->
@@ -126,7 +126,7 @@
               // table format to display the existing syllabus
               echo "<table>";
               echo "<tr>
-                    <th>#</th>
+                    <th>S.No.</th>
                     <th>Course Name</th>
                     <th>Semester</th>
                     <th>Syllabus PDF</th>

@@ -13,7 +13,7 @@ $CreateTable = "CREATE TABLE IF NOT EXISTS Request_Book (
     BookTitle VARCHAR(90),
     Author VARCHAR(100),
     Reason TEXT
-)";
+    )";
 mysqli_query($conn, $CreateTable) or die("Failed to create table");
 
 // Handle form submission
@@ -32,5 +32,7 @@ if (isset($_POST['submit'])) {
         die("Error: " . mysqli_error($conn));
     }
     // Display a success message
-    echo "Thank you, $Name! Your message has been sucessfully send.";
+    echo "<script>window.location='../RequestBook.html';</script>"; // Redirect the user to the same page to refresh the list of books
+
 }
+?>

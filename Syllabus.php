@@ -45,7 +45,7 @@ if ($selected_course && $selected_semester) {
       <span>Library Management System</span>
     </div>
     <nav class="nav">
-      <a href="Index.html" class="nav-link" id="Size">Home</a>
+      <a href="Home.html" class="nav-link" id="Size">Home</a>
       <a href="BorrowBooks.php" class="nav-link " id="Size">Borrow Books</a>
       <a href="Syllabus.php" class="nav-link active" id="Size">Syllabus</a>
       <a href="RequestBook.html" class="nav-link" id="Size">Request Books</a>
@@ -116,7 +116,7 @@ if ($selected_course && $selected_semester) {
                 </div>
               </div>
             </div>
-            <a href="../Library Management System/ADMIN/Admin PHP/<?php echo $pdf_data['Course_PDF']; ?>" target="_blank" class="btn-view"> <!-- connect PDF through URL and open in new tab -->
+            <a href="../Library-Management-System/ADMIN/Admin PHP/<?php echo $pdf_data['Course_PDF']; ?>" target="_blank" class="btn-view"> <!-- connect PDF through URL and open in new tab -->
               <i class="fa fa-eye"></i> View PDF
             </a>
           </div>

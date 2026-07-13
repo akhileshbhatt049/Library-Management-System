@@ -39,8 +39,9 @@ if (isset($_POST['submit'])) {
 
     // Check if the insertion was successful or not and display appropriate message
     if (mysqli_query($conn, $insert)) {
-        echo "$Name! $BookName borrow request has been submitted.";
-    } else {
+        // Redirect the user to the same page to refresh the list of books
+        echo "<script>window.location='../BorrowBooks.html';</script>";    
+     } else {
         die("Error: " . mysqli_error($conn));
     }
 }

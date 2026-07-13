@@ -40,7 +40,7 @@ if (isset($_POST['Upload_Syllabus'])) {
 
     // Check if the insertion was successful and display an appropriate message
     if (mysqli_query($conn, $sql)) {
-        echo "$courseName added successfully.";
+    echo "<script>window.location='../Admin_Syllabus.php';</script>"; // Redirect the user to the same page to refresh the list of books
     } else {
         echo "Error: " . mysqli_error($conn);
     }

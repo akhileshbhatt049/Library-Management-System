@@ -2,12 +2,12 @@
 function openModal(id, studentName) {
   document.getElementById("rejectId").value = id;
   document.getElementById("studentNameDisplay").textContent = studentName;
-  document.getElementById("rejectModal").classList.add("active");
+  document.getElementById("rejectModal").style.display = "flex";
 }
 
 // Close Reject Modal
 function closeModal() {
-  document.getElementById("rejectModal").classList.remove("active");
+  document.getElementById("rejectModal").style.display = "none";
   document.getElementById("rejectReason").value = "";
 }
 
@@ -18,6 +18,16 @@ window.onclick = function (event) {
     closeModal();
   }
 };
+
+// Close modal with Escape key
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    const modal = document.getElementById("rejectModal");
+    if (modal.style.display === "flex") {
+      closeModal();
+    }
+  }
+});
 
 // Auto-hide alerts after 5 seconds
 setTimeout(function () {

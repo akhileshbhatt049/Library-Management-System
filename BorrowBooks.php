@@ -1,7 +1,10 @@
 <!-- Made connection to database -->
 <?php
-$conn = mysqli_connect("localhost", "root", "", "Library_Management_System");
-$books = mysqli_query($conn, "SELECT * FROM ManageBooksAdmin");
+$conn = mysqli_connect("localhost", "root", "") or die("Failed to connect database");
+$sql = "CREATE DATABASE IF NOT EXISTS Library_Management_System";
+mysqli_query($conn, $sql) or die("Failed to create database");
+
+mysqli_select_db($conn, "Library_Management_System");$books = mysqli_query($conn, "SELECT * FROM ManageBooksAdmin");
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +26,7 @@ $books = mysqli_query($conn, "SELECT * FROM ManageBooksAdmin");
             <span>Library Management System</span>
         </div>
         <nav class="nav">
-            <a href="Index.html" class="nav-link" id="Size">Home</a>
+            <a href="Home.html" class="nav-link" id="Size">Home</a>
             <a href="BorrowBooks.php" class="nav-link active" id="Size">Borrow Books</a>
             <a href="Syllabus.php" class="nav-link" id="Size">Syllabus</a>
             <a href="RequestBook.html" class="nav-link" id="Size">Request Books</a>

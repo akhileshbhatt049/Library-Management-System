@@ -48,13 +48,13 @@ if ($filter == 'All') { // If the filter is set to 'All', retrieve all borrow re
 
   <div class="container">
     <nav>
-      <a href="AdministratorArea.html">Dashboard</a>
-      <a href="Admin_ManageBooks.php">Manage <br /> Books</a>
-      <a href="Admin_BorrowRequest.php" style="background:#3b82f6; color:white; border-radius:8px;">Borrow <br /> Request</a>
-      <a href="Admin_Syllabus.php">Syllabus</a>
-      <a href="Admin_BookRequest.php">New <br /> Books <br /> Request</a>
-      <a href="Admin_Contact.php">Feedbacks</a>
-      <a href="Admin_UserAccount.php">User's <br /> Accounts</a>
+      <a href="AdministratorArea.html" id="Dashboard">Dashboard</a>
+      <a href="Admin_ManageBooks.php" id="ManageBooks">Manage <br /> Books</a>
+      <a href="Admin_BorrowRequest.php" id="BorrowRequest" style="background:#3b82f6; color:white; border-radius:8px;">Borrow <br /> Request</a>
+      <a href="Admin_Syllabus.php" id="Syllabus">Syllabus</a>
+      <a href="Admin_BookRequest.php" id="NewBooksRequest">New <br /> Books <br /> Request</a>
+      <a href="Admin_Contact.php" id="Feedbacks">Feedbacks</a>
+      <a href="Admin_UserAccount.php" id="UserAccounts">User's <br /> Accounts</a>
     </nav>
 
     <div class="Borrow-request">

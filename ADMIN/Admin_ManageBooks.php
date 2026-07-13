@@ -106,7 +106,7 @@ if (isset($_POST['delete_id'])) { // Check if the delete_id is set in the POST r
       <a href="Admin_Syllabus.php" id="Syllabus">Syllabus</a>
       <a href="Admin_BookRequest.php" id="NewBooksRequest">New <br> Books <br> Request</a>
       <a href="Admin_Contact.php" id="Feedbacks">Feedbacks</a>
-      <a href="Admin_UserAccount.php" id="Feedbacks">User's <br> Accounts</a>
+      <a href="Admin_UserAccount.php" id="UserAccounts">User's <br> Accounts</a>
     </nav>
 
     <!-- Main Content -->
@@ -149,7 +149,7 @@ if (isset($_POST['delete_id'])) { // Check if the delete_id is set in the POST r
             // Table format to display books
             echo "<table>";
             echo "<tr>
-                  <th>#</th>
+                  <th>S.No</th>
                   <th>Title</th>
                   <th>Author</th>
                   <th>ISBN</th>
