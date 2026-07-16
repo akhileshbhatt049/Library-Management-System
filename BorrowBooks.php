@@ -1,11 +1,60 @@
-<!-- Made connection to database -->
 <?php
+session_start();
+
+// Connect to the database
 $conn = mysqli_connect("localhost", "root", "") or die("Failed to connect database");
 $sql = "CREATE DATABASE IF NOT EXISTS Library_Management_System";
 mysqli_query($conn, $sql) or die("Failed to create database");
-
 mysqli_select_db($conn, "Library_Management_System");
-$books = mysqli_query($conn, "SELECT * FROM ManageBooksAdmin");
+
+// Create the BorrowBook table if it doesn't exist
+$CreateTable = "CREATE TABLE IF NOT EXISTS BorrowBook (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    BookName VARCHAR(150),
+    Author VARCHAR(150),
+    ISBN VARCHAR(50),
+    Name VARCHAR(150),
+    StudentID VARCHAR(50),
+    Email varchar(70),
+    phone VARCHAR(10),
+    ReturnDate TEXT,
+    Status VARCHAR(20) DEFAULT 'Pending',
+    RejectReason TEXT NULL
+)";
+mysqli_query($conn, $CreateTable) or die("Failed to create table: " . mysqli_error($conn));
+
+// Handle form submission
+$message = "";
+$message_type = "";
+
+if (isset($_POST['submit'])) {
+    $BookName = mysqli_real_escape_string($conn, $_POST["BookName"]);
+    $Author = mysqli_real_escape_string($conn, $_POST["Author"]);
+    $ISBN = mysqli_real_escape_string($conn, $_POST["ISBN"]);
+    $Name = mysqli_real_escape_string($conn, $_POST["Name"]);
+    $StudentID = mysqli_real_escape_string($conn, $_POST['StudentID']);
+    $Email = mysqli_real_escape_string($conn, $_POST['Email']);
+    $Phone = mysqli_real_escape_string($conn, $_POST['Phone']);
+    $ReturnDate = mysqli_real_escape_string($conn, $_POST['ReturnDate']);
+
+    // Insert using prepared statement for security
+    $stmt = mysqli_prepare($conn, "INSERT INTO BorrowBook (BookName, Author, ISBN, Name, StudentID, Email, phone, ReturnDate, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'Pending')");
+    mysqli_stmt_bind_param($stmt, "ssssssss", $BookName, $Author, $ISBN, $Name, $StudentID, $Email, $Phone, $ReturnDate);
+
+    if (mysqli_stmt_execute($stmt)) {
+        $message = "Book borrowed successfully!";
+        $message_type = "success";
+    } else {
+        $message = "Error: " . mysqli_error($conn);
+        $message_type = "error";
+    }
+    mysqli_stmt_close($stmt);
+}
+
+// Fetch available books
+$books_result = mysqli_query($conn, "SELECT * FROM ManageBooksAdmin");
+
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +68,29 @@ $books = mysqli_query($conn, "SELECT * FROM ManageBooksAdmin");
     <link rel="stylesheet" type="text/css" href="Assets/CSS/Borrow Books.css">
 
     <style>
+        .alert-message {
+            max-width: 800px;
+            margin: 15px auto;
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
 
+        .alert-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .alert-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
     </style>
 </head>
 
@@ -35,27 +106,19 @@ $books = mysqli_query($conn, "SELECT * FROM ManageBooksAdmin");
             <a href="Home.html" class="nav-link" id="Size">Home</a>
             <a href="BorrowBooks.php" class="nav-link active" id="Size">Borrow Books</a>
             <a href="Syllabus.php" class="nav-link" id="Size">Syllabus</a>
-            <a href="RequestBook.php" class="nav-link" id="Size">Request Books</a>
-
-            <!-- Account Dropdown -->
-            <div class="nav-item-dropdown">
-                <a href="#" class="nav-link" id="Size">Account</a>
-                <div class="dropdown-content">
-                    <a href="Account.php">User Account</a>
-
-                    <!-- ✅ Only show Admin if user is admin -->
-                    <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1): ?>
-                        <a href="ADMIN/AdministratorArea.html">Admin</a>
-                    <?php endif; ?>
-
-                    <a href="PHP/login/auth/logout.php" onclick="return confirm('Are you sure you want to logout?');">Logout</a>
-                </div>
-            </div>
-
-            <a href="Contact.php" class="nav-link" id="Size">Contacts</a>
-
+            <a href="RequestBook.html" class="nav-link" id="Size">Request Books</a>
+            <a href="Account.php" class="nav-link" id="Size">Account</a>
+            <a href="Contact.html" class="nav-link" id="Size">Contacts</a>
         </nav>
     </header>
+
+    <!-- Display Message -->
+    <?php if (!empty($message)): ?>
+        <div class="alert-message <?php echo $message_type; ?>">
+            <i class="fa <?php echo ($message_type == 'success') ? 'fa-check-circle' : 'fa-exclamation-circle'; ?>"></i>
+            <?php echo $message; ?>
+        </div>
+    <?php endif; ?>
 
     <!-- Display available books for borrowing with two columns -->
     <div class="books-table">
@@ -67,18 +130,18 @@ $books = mysqli_query($conn, "SELECT * FROM ManageBooksAdmin");
                 </tr>
             </thead>
             <tbody>
-                <?php if (mysqli_num_rows($books) > 0): ?> <!-- Checking if there are any books available in the database -->
-                    <?php while ($book = mysqli_fetch_assoc($books)): ?> <!-- Get a book at a time from database and a row for each book -->
+                <?php if (mysqli_num_rows($books_result) > 0): ?>
+                    <?php while ($book = mysqli_fetch_assoc($books_result)): ?>
                         <tr>
-                            <td class="book-title"><?php echo $book['BookTitle']; ?></td> <!-- Display the book title -->
+                            <td class="book-title"><?php echo htmlspecialchars($book['BookTitle']); ?></td>
                             <td>
-                                <button class="borrow-btn" onclick="openModal('<?php echo $book['BookTitle']; ?>','<?php echo $book['Author']; ?>','<?php echo $book['ISBN']; ?>')"> <!-- Pass book title, Author, and ISBN data to JS and Open modal with book details -->
+                                <button class="borrow-btn" onclick="openModal('<?php echo htmlspecialchars($book['BookTitle']); ?>','<?php echo htmlspecialchars($book['Author']); ?>','<?php echo htmlspecialchars($book['ISBN']); ?>')">
                                     <i class="fa fa-book"></i> Borrow
                                 </button>
                             </td>
                         </tr>
-                    <?php endwhile; ?> <!-- End of while loop -->
-                <?php else: ?> <!-- If no books are available, display a message -->
+                    <?php endwhile; ?>
+                <?php else: ?>
                     <tr>
                         <td colspan="2">
                             <div class="no-books">
@@ -87,7 +150,7 @@ $books = mysqli_query($conn, "SELECT * FROM ManageBooksAdmin");
                             </div>
                         </td>
                     </tr>
-                <?php endif; ?> <!-- End of if statement -->
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
@@ -97,11 +160,11 @@ $books = mysqli_query($conn, "SELECT * FROM ManageBooksAdmin");
         <div class="modal-content">
             <div class="modal-header">
                 <h2><i class="fa fa-book"></i> Borrow Book</h2>
-                <span class="close-btn" onclick="closeModal()">&times;</span> <!-- Close button to close the modal -->
+                <span class="close-btn" onclick="closeModal()">&times;</span>
             </div>
 
-            <!-- Form to collect user details for borrowing the book -->
-            <form action="PHP/Borrowbooks.php" method="post" class="borrow-form">
+            <!-- Form submits to the same page -->
+            <form action="" method="post" class="borrow-form">
                 <div class="form-group">
                     <label><i class="fa fa-book"></i> Book Name:</label>
                     <input type="text" id="BookName" name="BookName" readonly required>
@@ -150,9 +213,22 @@ $books = mysqli_query($conn, "SELECT * FROM ManageBooksAdmin");
             </form>
         </div>
     </div>
-    <script src="Assets/JS/Borrow_Books.js"></script> <!-- JS file to handle modal open and close functionality -->
+
+    <script src="Assets/JS/Borrow_Books.js"></script>
+
+    <script>
+        // Auto-hide alert after 5 seconds on success
+        setTimeout(function() {
+            const alert = document.querySelector('.alert-message.success');
+            if (alert) {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(function() {
+                    alert.style.display = 'none';
+                }, 500);
+            }
+        }, 5000);
+    </script>
 </body>
 
 </html>
-
-<?php mysqli_close($conn); ?> <!-- Close the database connection -->

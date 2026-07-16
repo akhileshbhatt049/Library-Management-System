@@ -43,7 +43,7 @@ $upload_message_type = "";
 
 if (isset($_POST['upload_picture'])) {
     if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
-        $upload_dir = "uploads/profile/";
+        $upload_dir = "Assets/profile/";
 
         // Create folder if it doesn't exist
         if (!is_dir($upload_dir)) {
@@ -125,11 +125,11 @@ mysqli_close($conn);
             <a href="Home.html" class="nav-link" id="Size">Home</a>
             <a href="BorrowBooks.php" class="nav-link" id="Size">Borrow Books</a>
             <a href="Syllabus.php" class="nav-link" id="Size">Syllabus</a>
-            <a href="RequestBook.php" class="nav-link" id="Size">Request Books</a>
+            <a href="RequestBook.html" class="nav-link" id="Size">Request Books</a>
 
             <!-- Account Dropdown -->
             <div class="nav-item-dropdown">
-                <a href="#" class="nav-link active" id="Size">Account</a>
+                <a href="Account.php" class="nav-link active" id="Size">Account</a>
                 <div class="dropdown-content">
                     <a href="Account.php">User Account</a>
 
@@ -142,7 +142,7 @@ mysqli_close($conn);
                 </div>
             </div>
 
-            <a href="Contact.php" class="nav-link" id="Size">Contacts</a>
+            <a href="Contact.html" class="nav-link" id="Size">Contacts</a>
 
         </nav>
     </header>
@@ -154,8 +154,6 @@ mysqli_close($conn);
                 <h2 class="sidebar-title">My Account</h2>
                 <div class="sidebar-menu">
                     <a href="#" class="menu-item active">Account Details</a>
-                    <a href="#" class="menu-item">Borrowed Books</a>
-                    <a href="#" class="menu-item">Books Requests</a>
                 </div>
             </aside>
 

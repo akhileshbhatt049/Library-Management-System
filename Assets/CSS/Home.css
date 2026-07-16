@@ -1,0 +1,394 @@
+body {
+    margin: 0;
+    font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+    background-color: #fefaf0;
+}
+
+/* ----- Header ----- */
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background-color: #ffbd595e;
+}
+header > img {
+    width: 130px;
+    height: auto;
+    margin-right: 20px;
+}
+header > span {
+    font-size: 40px;
+    font-weight: bold;
+    color: #343333d7;
+}
+
+/* ----- welcome-section ----- */
+.welcome-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 100px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+/* ----- LEFT SIDE  ----- */
+.Left-part {
+    display: flex;
+    flex-direction: column;
+    margin-left: -30px;
+}
+
+.Left-part > h1 {
+    font-size: 45px;
+    color: #343333d7;
+    margin: 15px 0 15px 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+/* Line */
+.divider-light {
+    width: 520px;
+    height: 5px;
+    background-color: rgba(97, 95, 95, 0.25);
+    margin: 20px auto 20px auto;
+    border: 0;
+    border-radius: 2px;
+}
+
+.Left-part > h2 {
+    font-size: 35px;
+    color: #343333d7;
+    font-weight: 400;
+    margin: 10px 0 40px 0;
+    text-align: center;
+    font-style: italic;
+}
+
+/*  Browse books and View Syllabus */
+.LeftSide-buttons {
+    display: flex;
+    gap: 35px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 0;
+}
+
+.LeftSide-buttons > a {
+    text-decoration: none;
+}
+
+.LeftSide-buttons > a > button {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border-radius: 30px;
+    padding: 15px 45px;
+    cursor: pointer;
+    font-size: 1.4rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: white;
+    transition: background-color 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.LeftSide-buttons > a > button > img {
+    width: 50px;
+    height: auto;
+}
+
+/* ----- RIGHT SIDE ----- */
+.Right-part {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.Right-part > a {
+    text-decoration: none;
+    margin: 8px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.Right-part > a > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 15px 45px;
+    border-radius: 40px;
+    cursor: pointer;
+    gap: 15px;
+    font-size: 1.4rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: white;
+    width: 320px;
+    height: 80px;
+    max-width: 100%;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.02);
+    transition: background-color 0.2s;
+    font-weight: 500;
+    color: #2c2c2c;
+}
+
+.Right-part .fa {
+    font-size: 26px;
+    margin-right: 5px;
+    color: #a74944d0;
+}
+
+button:hover {
+    background-color: #ff5961be !important;
+    border-color: transparent;
+    color: white;
+}
+button:hover .fa {
+    color: white;
+}
+
+.LeftSide-buttons button:hover img {
+    filter: brightness(0) invert(1);
+}
+
+.LeftSide-buttons button:hover img {
+    filter: brightness(0) invert(1);
+}
+
+
+
+/* ==========================
+   RESPONSIVE DESIGN
+========================== */
+
+/* Tablets and small laptops (max-width: 1024px) */
+@media (max-width: 1024px) {
+    .welcome-section {
+        gap: 50px;
+    }
+
+    .Left-part > h1 {
+        font-size: 38px;
+    }
+
+    .Left-part > h2 {
+        font-size: 28px;
+    }
+
+    .divider-light {
+        width: 400px;
+    }
+
+    .Right-part > a > button {
+        width: 280px;
+        height: 70px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+    header > span {
+        font-size: 28px;
+    }
+
+    header > img {
+        width: 80px;
+    }
+
+    .welcome-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        margin-top: 20px;
+        padding: 0 20px;
+    }
+
+    .Left-part {
+        margin-left: 0;
+        align-items: center;
+        width: 100%;
+    }
+
+    .Left-part > h1 {
+        font-size: 32px;
+        margin: 10px 0;
+    }
+
+    .Left-part > h2 {
+        font-size: 24px;
+        margin: 5px 0 20px 0;
+    }
+
+    .divider-light {
+        width: 80%;
+        max-width: 400px;
+        margin: 15px auto;
+    }
+
+    .LeftSide-buttons {
+        gap: 20px;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .LeftSide-buttons > a {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .LeftSide-buttons > a > button {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 30px;
+        font-size: 1.2rem;
+    }
+
+    .LeftSide-buttons > a > button > img {
+        width: 40px;
+    }
+
+    .Right-part {
+        width: 100%;
+        align-items: center;
+    }
+
+    .Right-part > a {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .Right-part > a > button {
+        width: 100%;
+        height: 65px;
+        font-size: 1.1rem;
+        padding: 12px 25px;
+        margin: 6px 0;
+    }
+
+    .Right-part .fa {
+        font-size: 22px;
+    }
+}
+
+/* Mobile Phones (max-width: 480px) */
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    header > span {
+        font-size: 20px;
+        display: block;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    header > img {
+        width: 60px;
+        margin-right: 0;
+    }
+
+    .welcome-section {
+        padding: 0 10px;
+        gap: 20px;
+        margin-top: 10px;
+    }
+
+    .Left-part > h1 {
+        font-size: 24px;
+        margin: 5px 0;
+    }
+
+    .Left-part > h2 {
+        font-size: 18px;
+        margin: 5px 0 15px 0;
+    }
+
+    .divider-light {
+        width: 90%;
+        height: 3px;
+        margin: 10px auto;
+    }
+
+    .LeftSide-buttons {
+        gap: 12px;
+    }
+
+    .LeftSide-buttons > a {
+        max-width: 280px;
+    }
+
+    .LeftSide-buttons > a > button {
+        padding: 12px 20px;
+        font-size: 1rem;
+        border-radius: 25px;
+    }
+
+    .LeftSide-buttons > a > button > img {
+        width: 32px;
+    }
+
+    .Right-part > a {
+        max-width: 280px;
+    }
+
+    .Right-part > a > button {
+        height: 55px;
+        font-size: 1rem;
+        padding: 10px 20px;
+        border-radius: 30px;
+        margin: 4px 0;
+    }
+
+    .Right-part .fa {
+        font-size: 18px;
+        margin-right: 3px;
+    }
+}
+
+/* Small Mobile Phones (max-width: 360px) */
+@media (max-width: 360px) {
+    header > span {
+        font-size: 16px;
+    }
+
+    header > img {
+        width: 50px;
+    }
+
+    .Left-part > h1 {
+        font-size: 20px;
+    }
+
+    .Left-part > h2 {
+        font-size: 15px;
+    }
+
+    .LeftSide-buttons > a > button {
+        font-size: 0.85rem;
+        padding: 10px 15px;
+    }
+
+    .Right-part > a > button {
+        font-size: 0.85rem;
+        height: 48px;
+        padding: 8px 15px;
+    }
+
+    .LeftSide-buttons > a > button > img {
+        width: 28px;
+    }
+
+    .Right-part .fa {
+        font-size: 16px;
+    }
+}
