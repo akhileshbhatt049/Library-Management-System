@@ -44,16 +44,33 @@ if ($selected_course && $selected_semester) {
       <img src="Assets/Images/logo.png" alt="Library Logo">
       <span>Library Management System</span>
     </div>
+
     <nav class="nav">
       <a href="Home.html" class="nav-link" id="Size">Home</a>
-      <a href="BorrowBooks.php" class="nav-link " id="Size">Borrow Books</a>
+      <a href="BorrowBooks.php" class="nav-link" id="Size">Borrow Books</a>
       <a href="Syllabus.php" class="nav-link active" id="Size">Syllabus</a>
-      <a href="RequestBook.html" class="nav-link" id="Size">Request Books</a>
-      <a href="Contact.html" class="nav-link" id="Size">Contacts</a>
-      <a href="Account.html" class="nav-link" id="Size">Account</a>
-      <a href="ADMIN/AdministratorArea.html" class="nav-link" id="Size">Admin</a>
+      <a href="RequestBook.php" class="nav-link" id="Size">Request Books</a>
+
+      <!-- Account Dropdown -->
+      <div class="nav-item-dropdown">
+        <a href="#" class="nav-link" id="Size">Account</a>
+        <div class="dropdown-content">
+          <a href="Account.php">User Account</a>
+
+          <!-- ✅ Only show Admin if user is admin -->
+          <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1): ?>
+            <a href="ADMIN/AdministratorArea.html">Admin</a>
+          <?php endif; ?>
+
+          <a href="PHP/login/auth/logout.php" onclick="return confirm('Are you sure you want to logout?');">Logout</a>
+        </div>
+      </div>
+
+      <a href="Contact.php" class="nav-link" id="Size">Contacts</a>
+
     </nav>
   </header>
+
 
   <!-- Body Part -->
   <div class="page-header">

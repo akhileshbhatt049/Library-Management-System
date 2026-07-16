@@ -120,56 +120,64 @@
               mysqli_query($conn, $sql) or die("Failed to create database");
               mysqli_select_db($conn, "Library_Management_System");
 
-              //Retrieve existing syllabus from the database
-              $result = mysqli_query($conn, "SELECT * FROM ADMIN_SYLLABUS");
+              // Retrieve existing syllabus from the database
+              $result = mysqli_query($conn, "SELECT * FROM ADMIN_SYLLABUS ORDER BY ID DESC");
 
-              // table format to display the existing syllabus
-              echo "<table>";
-              echo "<tr>
+              if (!$result) {
+                die("Query failed: " . mysqli_error($conn));
+              }
+              ?>
+
+              <div class="table-container">
+                <table>
+                  <tr>
                     <th>S.No.</th>
                     <th>Course Name</th>
                     <th>Semester</th>
                     <th>Syllabus PDF</th>
                     <th>Action</th>
-                  </tr>";
+                  </tr>
 
-              $count = 1;
+                  <?php if (mysqli_num_rows($result) > 0): ?>
+                    <?php $count = 1; ?>
+                    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                      <tr>
+                        <td><span class='id-number'><?php echo $count; ?></span></td>
+                        <td><span class='course-name'><?php echo htmlspecialchars($row['Course_Name']); ?></span></td>
+                        <td><span class='semester-badge'><?php echo htmlspecialchars($row['Semester']); ?></span></td>
+                        <td>
+                          <?php if (!empty($row['Course_PDF'])): ?>
+                            <a href='../ADMIN/Admin PHP/<?php echo htmlspecialchars($row['Course_PDF']); ?>' target='_blank'>
+                              <i class='fa fa-file-pdf-o'></i> View PDF
+                            </a>
+                          <?php else: ?>
+                            <span class='no-pdf'>No PDF</span>
+                          <?php endif; ?>
+                        </td>
+                        <td>
+                          <form method='POST' onsubmit="return confirm('Are you sure you want to delete this syllabus?');">
+                            <input type='hidden' name='delete_id' value='<?php echo $row['ID']; ?>'>
+                            <button type='submit' class='btn-delete'>
+                              <i class='fa fa-trash'></i> Delete
+                            </button>
+                          </form>
+                        </td>
+                      </tr>
+                      <?php $count++; ?>
+                    <?php endwhile; ?>
+                  <?php else: ?>
+                    <tr>
+                      <td colspan='5' style='text-align: center; padding: 40px; color: #6b7280;'>
+                        <div style='font-size: 48px; margin-bottom: 10px;'>📚</div>
+                        <h3 style='margin: 0;'>No Syllabus Found</h3>
+                        <p style='margin: 5px 0 0 0; color: #9ca3af;'>No syllabus has been added yet.</p>
+                      </td>
+                    </tr>
+                  <?php endif; ?>
+                </table>
+              </div>
 
-              while ($row = mysqli_fetch_assoc($result)) {  // Loop through each syllabus record and display it in the table
-                echo "<tr>";
-                echo "<td><span class='id-number'>{$count}</span></td>";
-                echo "<td><span class='course-name'>" . $row['Course_Name'] . "</span></td>";
-                echo "<td><span class='semester-badge'>" . $row['Semester'] . "</span></td>";
-                echo "<td>";
-
-                if (!empty($row['Course_PDF'])) { // Check if the PDF file exists
-                  // Add ../ADMIN/ to the path
-                  echo "<a href='../ADMIN/Admin PHP/" . $row['Course_PDF'] . "' target='_blank'>
-            <i class='fa fa-file-pdf-o'></i> View PDF
-          </a>";  // Show PDF in new tab
-                } else {
-                  echo "<span class='no-pdf'>No PDF</span>";  // Show message if no PDF is available
-                }
-
-                echo "</td>";
-
-                // Delete Button
-                echo "<td>
-                      <form method='POST' onsubmit=\"return confirm('Are you sure you want to delete this syllabus?');\">
-                        <input type='hidden' name='delete_id' value='{$row['ID']}'>
-                        <button type='submit' class='btn-delete'><i class='fa fa-trash'></i> Delete</button>
-                      </form>
-                    </td>";
-
-                echo "</tr>";
-
-                $count++;   // Increment the count for the next syllabus record
-              }
-
-              echo "</table>";
-
-              mysqli_close($conn);  // Close the database connection
-              ?>
+              <?php mysqli_close($conn); ?>
             </div>
           </div>
         </div>
