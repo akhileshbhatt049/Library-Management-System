@@ -1,95 +1,109 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <title>Contact</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css"
-            href="Assets/CSS/Navigation Bar.css">
-        <link rel="stylesheet" type="text/css" href="Assets/CSS/Contact.css">
+<head>
+    <title>Contact</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="Assets/CSS/Navigation Bar.css">
+    <link rel="stylesheet" type="text/css" href="Assets/CSS/Contact.css">
 
-    </head>
+</head>
 
-    <body>
-        <!-- Navigation Bar -->
-        <header class="header">
-            <div class="Logo-Name">
-                <img src="Assets/Images/logo.png" alt="Library Logo">
-                <span>Library Management System</span>
-            </div>
-
-            <nav class="nav">
-                <a href="Home.html" class="nav-link" id="Size">Home</a>
-                <a href="BorrowBooks.php" class="nav-link" id="Size">Borrow
-                    Books</a>
-                <a href="Syllabus.php" class="nav-link" id="Size">Syllabus</a>
-                <a href="RequestBook.html" class="nav-link" id="Size">Request
-                    Books</a>
-                <a href="Account.php" class="nav-link" id="Size">Account</a>
-                <a href="Contact.html" class="nav-link active"
-                    id="Size">Contacts</a>
-            </nav>
-        </header>
-
-        <!-- Body Part -->
-        <h1 class="Page-name">Contact Us</h1>
-        <hr class="divider-light" />
-
-        <p id="Written-text">
-            Feel free to reach out to us with any questions or
-            feedback.
-        </p>
-
-        <!-- Form and Information Container -->
-        <div class="contact-container">
-            <section class="message-area">
-                <p><i class="fa fa-paper-plane"></i> Send us a message</p>
-
-                <!-- Left-Side Form to send a message to the Admin -->
-                <form id="contactForm" action="PHP/Contact.php" method="post">
-                    <div class="form-group">
-                        <label><i class="fa fa-user"></i> Full Name:</label>
-                        <input type="text" id="name" name="Name"
-                            placeholder="Enter your full name">
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fa fa-envelope"></i> Email:</label>
-                        <input type="email" id="email" name="Email"
-                            placeholder="Enter your email">
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fa fa-comment"></i> Message:</label>
-                        <textarea id="message" name="Message"
-                            placeholder="Write your message here..."></textarea>
-                    </div>
-
-                    <button type="submit" name="submit" class="submit-btn">
-                        <i class="fa fa-paper-plane"></i> Send Message
-                    </button>
-                </form>
-            </section>
-
-            <!-- Right-Side Information Area -->
-            <section class="information-area">
-                <p><i class="fa fa-info-circle"></i> Contact Information</p>
-                <div class="info-item">
-                    <i class="fa fa-envelope"></i>
-                    <p>akhileshbhatt046@gmail.com</p>
-                </div>
-                <div class="info-item">
-                    <i class="fa fa-phone"></i>
-                    <p>9702617996</p>
-                </div>
-                <div class="info-item">
-                    <i class="fa fa-map-marker"></i>
-                    <p>Koteshwor, Kathmandu</p>
-                </div>
-                <img src="Assets/Images/Contact book.png" alt="Contact Image"
-                    class="contact-image">
-            </section>
+<body>
+    <!-- Navigation Bar -->
+    <header class="header">
+        <div class="Logo-Name">
+            <img src="Assets/Images/logo.png" alt="Library Logo">
+            <span>Library Management System</span>
         </div>
-    </body>
+
+        <nav class="nav">
+            <a href="Home.html" class="nav-link" id="Size">Home</a>
+            <a href="BorrowBooks.php" class="nav-link" id="Size">Borrow
+                    Books</a>
+            <a href="Syllabus.php" class="nav-link" id="Size">Syllabus</a>
+            <a href="RequestBook.html" class="nav-link" id="Size">Request
+                    Books</a>
+            <a href="Account.php" class="nav-link" id="Size">Account</a>
+            <a href="Contact.html" class="nav-link active"
+                id="Size">Contacts</a>
+        </nav>
+    </header>
+
+    <!-- Body Part -->
+    <h1 class="Page-name">Contact Us</h1>
+    <hr class="divider-light" />
+
+    <p id="Written-text">
+        Feel free to reach out to us with any questions or
+        feedback.
+    </p>
+
+    <!-- Form and Information Container -->
+    <div class="contact-container">
+        <section class="message-area">
+            <p><i class="fa fa-paper-plane"></i> Send us a message</p>
+
+            <!-- Left-Side Form to send a message to the Admin -->
+            <form id="contactForm" action="PHP/Contact.php" method="post" novalidate>
+                <div class="form-group">
+                    <label><i class="fa fa-user"></i> Full Name:</label>
+                    <input type="text" id="name" name="Name"
+                        placeholder="Enter your full name" autocomplete="name">
+                    <span class="error-message" id="nameError"></span>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa fa-envelope"></i> Email:</label>
+                    <input type="email" id="email" name="Email"
+                        placeholder="Enter your email" autocomplete="email">
+                    <span class="error-message" id="emailError"></span>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa fa-comment"></i> Message:</label>
+                    <textarea id="message" name="Message"
+                        placeholder="Write your message here..."></textarea>
+                    <span class="error-message" id="messageError"></span>
+                    <div class="char-counter" id="charCounter">0 / 500 characters</div>
+                </div>
+
+                <button type="submit" name="submit" class="submit-btn" id="submitBtn">
+                    <i class="fa fa-paper-plane"></i> Send Message
+                </button>
+
+                <!-- Success Message -->
+                <div id="successMessage" class="success-message" style="display: none;">
+                    <i class="fa fa-check-circle"></i>
+                    <span id="successText">Your message has been sent successfully!</span>
+                </div>
+            </form>
+        </section>
+
+        <!-- Right-Side Information Area -->
+        <section class="information-area">
+            <p><i class="fa fa-info-circle"></i> Contact Information</p>
+            <div class="info-item">
+                <i class="fa fa-envelope"></i>
+                <p>akhileshbhatt046@gmail.com</p>
+            </div>
+            <div class="info-item">
+                <i class="fa fa-phone"></i>
+                <p>9702617996</p>
+            </div>
+            <div class="info-item">
+                <i class="fa fa-map-marker"></i>
+                <p>Koteshwor, Kathmandu</p>
+            </div>
+            <img src="Assets/Images/Contact book.png" alt="Contact Image"
+                class="contact-image">
+        </section>
+    </div>
+
+    <!-- JavaScript Validation -->
+    <script src="Assets/JS/Contact.js"></script>
+
+</body>
 
 </html>

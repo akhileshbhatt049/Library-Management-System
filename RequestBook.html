@@ -4,16 +4,16 @@
     <head>
         <title>Request Books</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css"
-            href="Assets/CSS/Navigation Bar.css">
-        <link rel="stylesheet" type="text/css"
-            href="Assets/CSS/RequestBook.css">
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" type="text/css" href="Assets/CSS/Navigation Bar.css">
+
+        <link rel="stylesheet" type="text/css" href="Assets/CSS/RequestBook.css">
     </head>
 
     <body>
+
         <!-- Navigation Bar -->
         <header class="header">
             <div class="Logo-Name">
@@ -34,50 +34,90 @@
         </header>
 
         <!-- Body Part -->
-        <h1 class="details">Request a new book</h1>
-        <hr class="divider-light" />
-        <p>Fill out the form below to request a new book to be added to the
-            library.
-            Our team will review your request and get back to you as soon as
-            possible.</p>
+        <h1 class="details">Request a New Book</h1>
+        <hr class="divider-light">
 
-        <!-- Form Part -->
+        <p>
+            Fill out the form below to request a new book to be added to the
+            library.
+        </p>
+
+        <!-- Form -->
         <section>
-            <form action="PHP/requestbook.php" method="post">
+            <form action="PHP/requestbook.php" method="post" id="requestForm"
+                novalidate>
+
                 <div class="form-request">
                     <label><i class="fa fa-user"></i> Full Name:</label>
-                    <input type="text" id="name" name="Name"
-                        placeholder="Full Name">
+                    <input type="text"
+                        id="name"
+                        name="Name"
+                        placeholder="Enter your full name"
+                        autocomplete="name">
+                    <span class="error-message" id="nameError"></span>
                 </div>
+
                 <div class="form-request">
                     <label><i class="fa fa-envelope"></i> Email:</label>
-                    <input type="email" id="email" name="Email"
-                        placeholder="Email">
+                    <input type="email"
+                        id="email"
+                        name="Email"
+                        placeholder="Enter your email address"
+                        autocomplete="email">
+                    <span class="error-message" id="emailError"></span>
                 </div>
+
                 <div class="form-request">
                     <label><i class="fa fa-book"></i> Book Title:</label>
-                    <input type="text" id="Book title" name="BookTitle"
-                        placeholder="Book Title">
+                    <input type="text"
+                        id="bookTitle"
+                        name="BookTitle"
+                        placeholder="Enter the book title">
+                    <span class="error-message" id="bookTitleError"></span>
                 </div>
+
                 <div class="form-request">
                     <label><i class="fa fa-user"></i> Author:</label>
-                    <input type="text" id="Author" name="Author"
-                        placeholder="Author Name">
+                    <input type="text"
+                        id="author"
+                        name="Author"
+                        placeholder="Enter the author's name">
+                    <span class="error-message" id="authorError"></span>
                 </div>
+
                 <div class="form-request">
                     <label><i class="fa fa-pencil"></i> Reason for
                         Request:</label>
-                    <input type="text" id="reason" name="Reason"
-                        placeholder="Enter the reason you would like this book added to the library...">
+                    <textarea
+                        id="reason"
+                        name="Reason"
+                        rows="4"
+                        placeholder="Enter the reason you would like this book added to the library..."></textarea>
+                    <span class="error-message" id="reasonError"></span>
+                    <div class="char-counter" id="charCounter">0 / 500 characters</div>
                 </div>
-                <button type="submit" name="submit" class="submit-btn">
+
+                <button type="submit" name="submit" class="submit-btn"
+                    id="submitBtn">
                     <i class="fa fa-paper-plane"></i> Submit Request
                 </button>
+
+                <!-- Success Message -->
+                <div id="successMessage" class="success-message"
+                    style="display: none;">
+                    <i class="fa fa-check-circle"></i>
+                    <span id="successText">Form validated successfully!</span>
+                </div>
+
             </form>
 
-            <!-- Right Side Image -->
             <img src="Assets/Images/Request book.png" alt="Book" title="Book">
+
         </section>
+
+        <!-- JavaScript Validation -->
+        <script src="Assets/JS/RequestBook.js"></script>
+
     </body>
 
 </html>
